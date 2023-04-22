@@ -18,6 +18,7 @@ main().catch(err => console.log(err))
 
 // connect to mongoDB database
 async function main() {
+    // local connection string: "mongodb://127.0.0.1:27017/trips_db"
     mongoose.connect("mongodb+srv://lahackers:pass@easyrideone.0gqx4ay.mongodb.net/trips_db?retryWrites=true&w=majority")
 }
 
@@ -28,7 +29,11 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     name: String,
-    num_likes: Number
+    // num_likes is a number, originally set to 0
+    num_likes: {
+        type: Number,
+        default: 0
+    }
 })
 
 // create user model
@@ -60,6 +65,67 @@ const Trip = mongoose.model("Trip", tripSchema)
 // test home route
 app.get("/", function(req, res) {
     res.send("Hello World!")
+})
+
+// create user
+app.post("/create-user", async function(req, res) {
+    // get username and password from req.body
+    const { username, password, name } = req.body
+
+    console.log(username, password, name)
+
+    // hash password
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    // create new user
+    const newUser = new User({
+        username: username,
+        password: hashedPassword,
+        name: name,
+        num_likes: 0 
+    })
+
+    // save new user to database
+    try {
+        let foundUser = await User.findOne({username: username})
+        if (foundUser == null) {
+            try {
+                await newUser.save()
+                res.send(true)
+            } catch (error) {
+                res.send(error)
+            }
+        }
+        else {
+            res.send(false)
+        }
+        
+    }
+    catch (error) {
+        res.send(error)
+    }
+})
+
+app.post("/login", async function(req, res) {
+    // get username and password from req.body
+    const { username, password } = req.body
+
+    // check if user exists
+    const user = await User.findOne({username: username})
+
+    if (user) {
+        // check if password matches
+        const isMatch = await bcrypt.compare(password, user.password)
+
+        if (isMatch) {
+            res.send("Success")
+        } else {
+            res.send("Incorrect password")
+        }
+    } else {
+        res.send("User does not exist")
+    }
+
 })
 
 app.listen(8000, function(req, res) {
