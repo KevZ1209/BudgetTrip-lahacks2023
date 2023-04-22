@@ -42,19 +42,20 @@ const User = mongoose.model("User", userSchema)
 /* TRIP SCHEMA AND MODEL */
 const tripSchema = new mongoose.Schema({
     // userID is a mongo Object ID
-    userID: String,
+    username: String,
     location: String,
     hotel: String,
     total_price: Number,
     budget: Number,
     num_likes: Number,
+    days: Number,
 
     // list of days in the trip
     days: [{
         attraction: String,
         food1: String,
         food2: String,
-        daily_budget: Number,
+        daily_price: Number,
         miles_traveled: Number
     }]
 })    
@@ -146,17 +147,15 @@ app.get("/get-user-id", async function(req, res) {
 
 app.post("/create-trip", async function(req, res) {
     // get data from req.body
-    const { userID, location, hotel, total_price, budget, days } = req.body
+    const { username, location, budget, days } = req.body
 
     // create new trip
     const newTrip = new Trip({
-        userID: userID,
-        location: location,
-        hotel: hotel,
-        total_price: total_price,
-        budget: budget,
+        username,
+        location,
+        budget,
         num_likes: 0,
-        days: days
+        days
     })
 
     // save new trip to database
