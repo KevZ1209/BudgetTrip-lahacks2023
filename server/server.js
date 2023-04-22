@@ -151,8 +151,8 @@ app.post("/create-trip", async function(req, res) {
         theme_park
     })
 
-    attraction_string = "Attractions in ${location}"
-
+    attraction_string = `Attractions in ${location}`
+    restaurant_string = `Restaurants in ${location}`
 
     // save new trip to database
     try {
