@@ -6,7 +6,7 @@ function ProfilePage() {
     
     return (
     <div id="profile">
-        <Heading>Profile Page</Heading>
+        <Heading>Profile</Heading>
     </div>
     );
 }

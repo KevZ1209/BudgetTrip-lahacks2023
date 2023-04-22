@@ -88,8 +88,8 @@ function HomePage() {
     }
 
     return (
-    <VStack spacing='40px'>
-        <Heading>Home Page</Heading>
+    <VStack spacing='40px' paddingTop="30px">
+        <Heading>Home</Heading>
         <HStack spacing='20px'>
             <Input
                 value={location}

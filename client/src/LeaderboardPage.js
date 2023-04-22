@@ -73,15 +73,12 @@ function LeaderboardPage() {
     }
 
     return (
-    <div id="leaderboard">
-    <VStack spacing={10}>
+    <VStack spacing={10}  paddingTop="30px">
+    <Heading>Feed</Heading>
     {userList.map((user,index) => (
         <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} />
       ))}
     </VStack>
-      
-        
-    </div>
     );
 }
 

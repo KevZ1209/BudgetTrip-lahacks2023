@@ -8,7 +8,7 @@
 body {
   /* background-color: var(--main-color) !important; */
 }
-
+/* 
 .navButton {
   display: inline-block;
   color: white;
@@ -27,4 +27,9 @@ body {
 
 .pagetitle {
   color: white;
+} */
+
+#navbarstack {
+  position: sticky; top: 0;
+  z-index: 9999;
 }
