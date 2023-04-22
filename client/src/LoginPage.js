@@ -1,11 +1,12 @@
 import React from "react";
+import { Heading } from '@chakra-ui/react'
 import "./LoginPage.css";
 
 function LoginPage() {
     
     return (
     <div id="login">
-        <h1>Login Page</h1>
+        <Heading>Login Page</Heading>
     </div>
     );
 }
