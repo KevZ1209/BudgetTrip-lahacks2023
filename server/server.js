@@ -18,7 +18,7 @@ main().catch(err => console.log(err))
 
 // connect to mongoDB database
 async function main() {
-    mongoose.connect("mongodb://127.0.0.1:27017/trip_db")
+    mongoose.connect("mongodb+srv://lahackers:pass@easyrideone.0gqx4ay.mongodb.net/trips_db?retryWrites=true&w=majority")
 }
 
 
