@@ -49,6 +49,10 @@ const tripSchema = new mongoose.Schema({
     budget: Number,
     num_likes: Number,
     days: Number,
+    // theme_park: Boolean, // optional filters below
+    // museum: String, 
+    // national_park: String,
+    // max_distance_from_hotel: Number,
 
     // list of days in the trip
     days: [{
@@ -83,7 +87,7 @@ app.post("/create-user", async function(req, res) {
 
     // create new user
     const newUser = new User({
-        username: username,
+        username,
         password: hashedPassword,
         name: name,
         num_likes: 0 
@@ -147,7 +151,9 @@ app.get("/get-user-id", async function(req, res) {
 
 app.post("/create-trip", async function(req, res) {
     // get data from req.body
-    const { username, location, budget, days } = req.body
+    const { username, location, budget, days,
+         national_park, museum, theme_park, max_distance_from_hotel } = req.body
+
 
     // create new trip
     const newTrip = new Trip({
@@ -155,8 +161,12 @@ app.post("/create-trip", async function(req, res) {
         location,
         budget,
         num_likes: 0,
-        days
+        days,
+        theme_park
     })
+
+    attraction_string = "Attractions in ${location}"
+
 
     // save new trip to database
     try {
@@ -169,8 +179,8 @@ app.post("/create-trip", async function(req, res) {
 })
 
 app.get("/view-trips-for-user", async function(req, res) {
-    // get userID from req.body
-    const { userID } = req.body
+    // get username from req.body
+    const { username } = req.body
 
     // find trips for user
     const trips = await Trip.find({userID: userID})
