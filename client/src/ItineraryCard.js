@@ -13,7 +13,8 @@ function ItineraryCard(props) {
     return (
     <div id="itineraryCard">
         <Card maxW='lg'>
-            <CardHeader>
+            {props.includeLikes &&
+                <CardHeader>
                 <Flex spacing='4'>
                 <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
                     <Box>
@@ -21,11 +22,27 @@ function ItineraryCard(props) {
                     <Text>{props.location}</Text>
                     </Box>
                 </Flex>
-                <Button flex='1' variant='ghost' backgroundColor={liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {setLiked(!liked)}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
+                <Button width="100px" variant='ghost' backgroundColor={liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {setLiked(!liked)}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
                 Like ({props.likes})
-                </Button>
+                </Button>                
                 </Flex>
             </CardHeader>
+            }
+            {!props.includeLikes &&
+                <CardHeader>
+                <Flex spacing='4'>
+                <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+                    <Box>
+                    <Heading size='lg'>Trip #{props.num+1}: {props.location}</Heading>
+                    </Box>
+                </Flex>
+                <HStack>
+                <Icon as={MdOutlineThumbUpOffAlt} />
+                <Heading size='md'> {props.likes}</Heading> 
+                </HStack>              
+                </Flex>
+            </CardHeader>
+            }
             <Image
                 objectFit='cover'
                 src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
@@ -34,12 +51,20 @@ function ItineraryCard(props) {
             />
             <CardBody>
                 <HStack spacing="auto">
-                <Text>
+                <Heading size="sm">
+                Total Distance: {props.total_distance} miles
+                </Heading>
+                <Heading size="sm">
                 Total Price: ${props.total_price}
-                </Text>
-                <Text>
+                </Heading>
+                </HStack>
+                <HStack spacing="auto">
+                <Heading size="sm">
+                
+                </Heading>
+                <Heading size="sm">
                 Budget: ${props.budget}
-                </Text>
+                </Heading>
                 </HStack>
             </CardBody>
             <CardFooter
@@ -64,7 +89,7 @@ function ItineraryCard(props) {
                 <Heading size='sm' marginBottom="3" marginTop="3">
                     Hotel: {props.hotel}
                 </Heading>
-                <Text>Money Spent: ${props.hotel_price}</Text>
+                <Text as="i">Money Spent: ${props.hotel_price}</Text>
                 </HStack>
                 <Divider />
                 {props.days.map((day,num) => (
@@ -88,10 +113,10 @@ function ItineraryCard(props) {
                     </HStack>
                 </VStack>
                 <HStack spacing="auto" width="100%">
-                <Text marginTop="2" marginBottom="2">
-                    Distance: {day.miles_traveled}
+                <Text marginTop="2" marginBottom="2" as="i">
+                    Distance: {day.miles_traveled} miles
                 </Text>
-                <Text marginTop="2" marginBottom="2">
+                <Text marginTop="2" marginBottom="2" as="i">
                     Money Spent: ${day.daily_price}
                 </Text>
                 </HStack>
