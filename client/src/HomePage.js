@@ -49,7 +49,7 @@ function HomePage() {
         // CALL API TO GET TRIP
         await timeout(2000); //for 1 sec delay
 
-        setTrip(1)
+        
         setIsGenerating(false)
         
     }
