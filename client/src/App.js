@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react'
 import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
 import LeaderboardPage from "./LeaderboardPage";
@@ -7,7 +8,8 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <ChakraProvider>
+       <BrowserRouter>
       <div className="navBar">
         <NavLink
           to="/"
@@ -45,6 +47,7 @@ function App() {
         <Route path="/login" element={<LoginPage/>} />
       </Routes>
     </BrowserRouter>
+    </ChakraProvider>
   );
 }
 
