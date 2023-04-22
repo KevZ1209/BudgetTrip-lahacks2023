@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: var(--main-color);
+  /* background-color: var(--main-color) !important; */
 }
 
 .navButton {
@@ -23,4 +23,8 @@ body {
 .navBar {
   height: 30px;
   margin-bottom: 40px;
+}
+
+.pagetitle {
+  color: white;
 }
