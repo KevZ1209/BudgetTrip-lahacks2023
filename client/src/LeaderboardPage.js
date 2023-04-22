@@ -17,6 +17,7 @@ function LeaderboardPage() {
             budget: 9341,
             num_likes: 69,
             hotel_price: 384,
+            total_distance: 2023,
             days: [{
                 attraction: "Some Bridge",
                 food1: "The Worst Restaurant",
@@ -41,6 +42,7 @@ function LeaderboardPage() {
             budget: 4823,
             num_likes: 421,
             hotel_price: 456,
+            total_distance: 1984,
             days: [{
                 attraction: "Antropology Museum",
                 food1: "Tacos 1986",
@@ -76,7 +78,7 @@ function LeaderboardPage() {
     <VStack spacing={10}  paddingTop="30px">
     <Heading>Feed</Heading>
     {userList.map((user,index) => (
-        <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} />
+        <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} includeLikes={true} num={index}  total_distance={user.total_distance}/>
       ))}
     </VStack>
     );
