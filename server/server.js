@@ -18,8 +18,202 @@ main().catch(err => console.log(err))
 
 // connect to mongoDB database
 async function main() {
-    mongoose.connect("mongodb://127.0.0.1:27017/trip_db")
+    // local connection string: "mongodb://127.0.0.1:27017/trips_db"
+    mongoose.connect("mongodb+srv://lahackers:pass@easyrideone.0gqx4ay.mongodb.net/trips_db?retryWrites=true&w=majority")
 }
+
+/* ***************** SCHEMAS AND MODELS ***************** */
+
+/* USER SCHEMA AND MODEL */
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+    name: String,
+    // num_likes is a number, originally set to 0
+    num_likes: {
+        type: Number,
+        default: 0
+    }
+})
+
+// create user model
+const User = mongoose.model("User", userSchema)
+
+/* TRIP SCHEMA AND MODEL */
+const tripSchema = new mongoose.Schema({
+    // userID is a mongo Object ID
+    userID: String,
+    location: String,
+    hotel: String,
+    total_price: Number,
+    budget: Number,
+    num_likes: Number,
+
+    // list of days in the trip
+    days: [{
+        attraction: String,
+        food1: String,
+        food2: String,
+        daily_budget: Number,
+        miles_traveled: Number
+    }]
+})    
+
+// create trip model
+const Trip = mongoose.model("Trip", tripSchema)
+
+
+/* ***************** API ENDPOINTS ***************** */
+
+// test home route
+app.get("/", function(req, res) {
+    res.send("Hello World!")
+})
+
+// create user
+app.post("/create-user", async function(req, res) {
+    // get username and password from req.body
+    const { username, password, name } = req.body
+
+    console.log(username, password, name)
+
+    // hash password
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    // create new user
+    const newUser = new User({
+        username: username,
+        password: hashedPassword,
+        name: name,
+        num_likes: 0 
+    })
+
+    // save new user to database
+    try {
+        let foundUser = await User.findOne({username: username})
+        if (foundUser == null) {
+            try {
+                await newUser.save()
+                res.send(true)
+            } catch (error) {
+                res.send(error)
+            }
+        }
+        else {
+            res.send(false)
+        }
+        
+    }
+    catch (error) {
+        res.send(error)
+    }
+})
+
+app.post("/login", async function(req, res) {
+    // get username and password from req.body
+    const { username, password } = req.body
+
+    // check if user exists
+    const user = await User.findOne({username: username})
+
+    if (user) {
+        // check if password matches
+        const isMatch = await bcrypt.compare(password, user.password)
+
+        if (isMatch) {
+            res.send(true)
+        } else {
+            res.send(false)
+        }
+    } else {
+        res.send(null)
+    }
+
+})
+
+app.get("/get-user-id", async function(req, res) {
+    // get username from req.body
+    const { username } = req.body
+
+    // find user
+    const foundUser = await User.findOne({username: username})
+    if (foundUser == null) {
+        res.send(null)
+    }
+    res.send(foundUser._id)
+})
+
+
+app.post("/create-trip", async function(req, res) {
+    // get data from req.body
+    const { userID, location, hotel, total_price, budget, days } = req.body
+
+    // create new trip
+    const newTrip = new Trip({
+        userID: userID,
+        location: location,
+        hotel: hotel,
+        total_price: total_price,
+        budget: budget,
+        num_likes: 0,
+        days: days
+    })
+
+    // save new trip to database
+    try {
+        await newTrip.save()
+        res.send(newTrip)
+    } catch (error) {
+        res.send(error)
+    }
+
+})
+
+app.get("/view-trips-for-user", async function(req, res) {
+    // get userID from req.body
+    const { userID } = req.body
+
+    // find trips for user
+    const trips = await Trip.find({userID: userID})
+
+    res.send(trips)
+
+})
+
+app.get("/view-days-for-trip", async function(req, res) {
+    // get tripID from req.body
+    const { tripID } = req.body
+
+    // find trip given tripID
+    const foundTrip = await Trip.findOne({_id: tripID})
+    
+    if (foundTrip == null) {
+        // no triip with that tripID
+        res.send(null)
+    }
+    else {
+        // get days for foundTrip
+        const days = foundTrip.days
+
+        res.send(days)
+    }
+})
+
+app.post("/like-trip", async function(req, res) {
+    // get tripID from req.body
+    const { tripID } = req.body
+
+    // find trip and update num_likes
+    const trip = await Trip.findOneAndUpdate({_id: tripID}, {$inc: {num_likes: 1}}, {new: true})
+
+    if (trip == null) {
+        // no trip with that trip ID
+        res.send(null)
+    }
+    else {
+        res.send(trip)
+    }
+})
 
 
 app.listen(8000, function(req, res) {
