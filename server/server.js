@@ -41,14 +41,12 @@ const User = mongoose.model("User", userSchema)
 
 /* TRIP SCHEMA AND MODEL */
 const tripSchema = new mongoose.Schema({
-    // userID is a mongo Object ID
     username: String,
     location: String,
     hotel: String,
     total_price: Number,
     budget: Number,
     num_likes: Number,
-    days: Number,
     // theme_park: Boolean, // optional filters below
     // museum: String, 
     // national_park: String,
@@ -136,18 +134,6 @@ app.post("/login", async function(req, res) {
 
 })
 
-app.get("/get-user-id", async function(req, res) {
-    // get username from req.body
-    const { username } = req.body
-
-    // find user
-    const foundUser = await User.findOne({username: username})
-    if (foundUser == null) {
-        res.send(null)
-    }
-    res.send(foundUser._id)
-})
-
 
 app.post("/create-trip", async function(req, res) {
     // get data from req.body
@@ -183,7 +169,7 @@ app.get("/view-trips-for-user", async function(req, res) {
     const { username } = req.body
 
     // find trips for user
-    const trips = await Trip.find({userID: userID})
+    const trips = await Trip.find({username: username})
 
     res.send(trips)
 
