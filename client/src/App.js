@@ -1,24 +1,53 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react'
+import HomePage from "./HomePage";
+import ProfilePage from "./ProfilePage";
+import LeaderboardPage from "./LeaderboardPage";
+import LoginPage from "./LoginPage";
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ChakraProvider>
+       <BrowserRouter>
+      <div className="navBar">
+        <NavLink
+          to="/"
+          style={{ textDecoration: "none", marginRight: "0.5rem" }}
+          className="navButton"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <div>Home</div>
+        </NavLink>
+        <NavLink
+          to="/profile"
+          style={{ textDecoration: "none", marginRight: "0.5rem" }}
+          className="navButton"
+        >
+          <div>Profile</div>
+        </NavLink>
+        <NavLink
+          to="/leaderboard"
+          style={{ textDecoration: "none", marginRight: "0.5rem" }}
+          className="navButton"
+        >
+          <div>Leaderboard</div>
+        </NavLink>
+        <NavLink
+          to="/login"
+          style={{ textDecoration: "none", marginRight: "0.5rem" }}
+          className="navButton"
+        >
+          <div>Login</div>
+        </NavLink>
+      </div>
+      <Routes>
+        <Route exact path="/" element={<HomePage/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/leaderboard" element={<LeaderboardPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+      </Routes>
+    </BrowserRouter>
+    </ChakraProvider>
   );
 }
 
