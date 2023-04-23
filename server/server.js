@@ -148,8 +148,8 @@ app.get("/get-user-data", async function(req, res) {
     const { username } = req.query
     // find trips for user
     const user = await User.findOne({username: username});
-
-    res.send({name: user.name, num_likes: user.num_likes})
+    console.log("user***", user)
+    res.send({name: user.name, num_likes: user.num_likes, trips_liked: user.trips_liked})
 
 })
 
