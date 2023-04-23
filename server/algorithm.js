@@ -682,7 +682,7 @@ const tripListMaker = async (
     //   zoo,
     //   aquarium,
 
-    if (amusement_park) {
+    if (amusement_park !== "false") {
       let contains_amusement_park = false;
       for (let g = 0; g < currentItinerary.length; g++) {
         if (
@@ -697,7 +697,7 @@ const tripListMaker = async (
       }
     }
 
-    if (museum) {
+    if (museum !== "false") {
       let contains_museum = false;
       for (let g = 0; g < currentItinerary.length; g++) {
         if (currentItinerary[g].activity.categories.includes("museum")) {
@@ -710,7 +710,7 @@ const tripListMaker = async (
       }
     }
 
-    if (park) {
+    if (park !== "false") {
       let contains_park = false;
       for (let g = 0; g < currentItinerary.length; g++) {
         if (currentItinerary[g].activity.categories.includes("park")) {
@@ -723,7 +723,7 @@ const tripListMaker = async (
       }
     }
 
-    if (shopping_mall) {
+    if (shopping_mall !== "false") {
       let contains_shopping_mall = false;
       for (let g = 0; g < currentItinerary.length; g++) {
         if (currentItinerary[g].activity.categories.includes("shopping_mall")) {
@@ -736,7 +736,7 @@ const tripListMaker = async (
       }
     }
 
-    if (store) {
+    if (store !== "false") {
       let contains_store = false;
       for (let g = 0; g < currentItinerary.length; g++) {
         if (currentItinerary[g].activity.categories.includes("store")) {
@@ -749,7 +749,7 @@ const tripListMaker = async (
       }
     }
 
-    if (zoo) {
+    if (zoo !== "false") {
       let contains_zoo = false;
       for (let g = 0; g < currentItinerary.length; g++) {
         if (currentItinerary[g].activity.categories.includes("zoo")) {
@@ -762,7 +762,7 @@ const tripListMaker = async (
       }
     }
 
-    if (aquarium) {
+    if (aquarium !== "false") {
       let contains_aquarium = false;
       for (let g = 0; g < currentItinerary.length; g++) {
         if (currentItinerary[g].activity.categories.includes("aquarium")) {
