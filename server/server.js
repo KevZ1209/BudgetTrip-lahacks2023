@@ -155,18 +155,17 @@ app.get("/get-user-data", async function(req, res) {
 
 app.post("/create-trip", async function(req, res) {
     // get data from req.body
-    const { username, location, budget, days,
-         national_park, museum, theme_park, max_distance_from_hotel } = req.body
-
+    const { username, location, hotel, budget, days, total_price } = req.body
 
     // create new trip
     const newTrip = new Trip({
         username,
         location,
+        hotel,
+        total_price,
         budget,
         num_likes: 0,
-        days,
-        theme_park
+        days
     })
 
     attraction_string = `Attractions in ${location}`
@@ -188,6 +187,7 @@ app.get("/view-trips-for-user", async function(req, res) {
 
     // find trips for user
     const trips = await Trip.find({username: username})
+    console.log(await Trip.find({}))
 
     res.send(trips)
 
@@ -312,8 +312,9 @@ app.get("/test-restaurants/:location", async function(req, res) {
 app.get("/generate-trip", async function(req, res) {
     // get location from req.params
 
-    
-    let { location, budget, num_days } = req.body
+
+    let { location, budget, num_days } = req.query
+    console.log("I'm in")
 
     // cast budget and num_days to ints
     budget = parseInt(budget)
