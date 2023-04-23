@@ -35,9 +35,13 @@ function HomePage() {
     const [numberOfDays, setNumberOfDays] = useState()
 
     const [amusementPark, setAmusementPark] = useState(false)
+    const [aquarium, setAquarium] = useState(false)
     const [museum, setMuseum] = useState(false)
     const [nationalPark, setNationalaPark] = useState(false)
     const [maxDistance, setMaxDistance] = useState(100)
+    const [shoppingMall, setShoppingMall] = useState(false)
+    const [store, setStore] = useState(false)
+    const [zoo, setZoo] = useState(false)
 
     const [isGenerating, setIsGenerating] = useState(false)
 
@@ -140,6 +144,13 @@ function HomePage() {
                         <Checkbox
                             iconColor="white"
                             colorScheme="brand"
+                            onChange={(e) => setAquarium(e.target.checked)}
+                        >
+                            Aquarium
+                        </Checkbox>
+                        <Checkbox
+                            iconColor="white"
+                            colorScheme="brand"
                             onChange={(e) => setMuseum(e.target.checked)}
                         >
                             Museum
@@ -151,9 +162,30 @@ function HomePage() {
                         >
                             National Park
                         </Checkbox>
+                        <Checkbox
+                            iconColor="white"
+                            colorScheme="brand"
+                            onChange={(e) => setShoppingMall(e.target.checked)}
+                        >
+                            Shopping Mall
+                        </Checkbox>
+                        <Checkbox
+                            iconColor="white"
+                            colorScheme="brand"
+                            onChange={(e) => setStore(e.target.checked)}
+                        >
+                            Store
+                        </Checkbox>
+                        <Checkbox
+                            iconColor="white"
+                            colorScheme="brand"
+                            onChange={(e) => setZoo(e.target.checked)}
+                        >
+                            Zoo
+                        </Checkbox>
                         <Divider />
                         <Text>Max distance from hotel: {maxDistance} miles</Text>
-                        <Slider aria-label='slider-ex-2' colorScheme='brand' defaultValue={100} min={0} max={500} step={1} onChange={(val) => setMaxDistance(val)}>
+                        <Slider aria-label='slider-ex-2' colorScheme='brand' defaultValue={15} min={1} max={100} step={1} onChange={(val) => setMaxDistance(val)}>
                             <SliderTrack>
                                 <SliderFilledTrack />
                             </SliderTrack>
