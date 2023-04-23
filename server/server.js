@@ -8,6 +8,9 @@ const axios = require('axios')
 
 /* other imported files: */
 const services = require('./services.js')
+const algorithm = require('./algorithm.js')
+
+// algorithm.tripListMaker(hotels,restaurants,attractions,budget,num_days)
 
 dotenv.config()
 
@@ -36,7 +39,10 @@ const userSchema = new mongoose.Schema({
     num_likes: {
         type: Number,
         default: 0
-    }
+    },
+    // array of trip ID's of trips liked by user
+    trips_liked: [String]
+
 })
 
 // create user model
@@ -215,18 +221,60 @@ app.get("/view-days-for-trip", async function(req, res) {
 })
 
 app.post("/like-trip", async function(req, res) {
-    // get tripID from req.body
-    const { tripID } = req.body
+
+    // username -> user that liked the trip
+    // tripID -> trip that was liked
+    const { username, tripID } = req.body
+
+    // important note: `trip.username` is the username of the trip that was liked. `username` is the user that liked the trip!
 
     // find trip and update num_likes
-    const trip = await Trip.findOneAndUpdate({_id: tripID}, {$inc: {num_likes: 1}}, {new: true})
+    let trip = await Trip.findOneAndUpdate({_id: tripID}, {$inc: {num_likes: 1}}, {new: true})
+    
+    // increment user's num_likes
+    await User.findOneAndUpdate({username: trip.username}, {$inc: {num_likes: 1}}, {new: true})
+
+    // update user's trips_liked array
+    const user = await User.findOneAndUpdate({username: username}, {$push: {trips_liked: tripID}}, {new: true})
 
     if (trip == null) {
         // no trip with that trip ID
         res.send(null)
     }
     else {
-        res.send(trip)
+        // success!
+        console.log("TRIP:")
+        console.log(trip)
+        console.log("USER:")
+        console.log(user)
+        res.send(true)
+    }
+})
+
+app.post("/unlike-trip", async function(req, res) {
+
+    const { username, tripID } = req.body
+
+    // find trip and update num_likes
+    let trip = await Trip.findOneAndUpdate({_id: tripID}, {$inc: {num_likes: -1}}, {new: true})
+
+    // decrement user's num_likes
+    await User.findOneAndUpdate({username: trip.username}, {$inc: {num_likes: -1}}, {new: true})
+
+    // update user's trips_liked array
+    const user = await User.findOneAndUpdate({username: username}, {$pull: {trips_liked: tripID}}, {new: true})
+
+    if (trip == null) {
+        // no trip with that trip ID
+        res.send(null)
+    }
+    else {
+        // success!
+        console.log("TRIP:")
+        console.log(trip)
+        console.log("USER:")
+        console.log(user)
+        res.send(true)
     }
 })
 
@@ -258,6 +306,27 @@ app.get("/test-restaurants/:location", async function(req, res) {
     const restaurants = await services.get_restaurants(location)
 
     res.send(restaurants)
+})
+
+// THIS FUNCTION IS NOT FINISHED!!!
+app.get("/generate-trip", async function(req, res) {
+    // get location from req.params
+    const { location, budget, num_days } = req.body
+
+    // get hotels from services.js
+    const hotels = await services.get_hotels(location)
+
+    // get attractions from services.js
+    const attractions = await services.get_attractions(location)
+
+    // get restaurants from services.js
+    const restaurants = await services.get_restaurants(location)
+
+    // generate a trip using algorithm
+    const trip = algorithm.tripListMaker(hotels,restaurants,attractions,budget,num_days)
+
+    res.send(trip)
+
 })
 
 
