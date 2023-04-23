@@ -506,7 +506,7 @@ const tripListMaker = async (
   };
 
   let stars_multiplier = 200;
-  let mile_price_constant = 0.65;
+  let mile_price_constant = 0.65; // FIX FIX FIX
   let possibleCombs = 2000;
   let possibleItineraries = [];
 
@@ -579,7 +579,7 @@ const tripListMaker = async (
 
   possibleItineraries.sort((a, b) => b.total_likeability - a.total_likeability);
   if (possibleItineraries.length == 0) {
-    console.log("No possible itineraries");
+    console.log("You ain't getting jack on that budget, bucko");
     return null;
   }
 
@@ -676,6 +676,7 @@ const tripListMaker = async (
   possibleItineraries[0].trip_distance_miles = trip_distance;
   possibleItineraries[0].trip_time_hours = trip_time / 60;
 
+  //console.log(possibleItineraries[0]);
   return possibleItineraries[0];
 };
 
