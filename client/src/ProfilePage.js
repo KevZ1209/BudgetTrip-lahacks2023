@@ -9,7 +9,9 @@ import axios from "axios";
 
 function ProfilePage() {
     const { currentUsername, setCurrentUsername } = useContext(UserContext);
-    const [name, setName] = useState();
+    const [name, setName] = useState("...");
+    const [numLikes, setNumLikes] = useState("...");
+    const [trips, setTrips] = useState([])
 
     const user = {
         name: "Marcus Cheng",
@@ -72,24 +74,39 @@ function ProfilePage() {
 
 
 
-    // useEffect(async () => {
-    //     const fetch = async () => {
-    //         console.log("*****", currentUsername)
-    //         if(currentUsername !== null){
-    //             console.log(currentUsername)
-    //             const result = await axios.get("http://localhost:8000/get-name", {
-    //                 username: currentUsername
-    //             })
-    //             console.log(result)
-    //             if(result){
-    //                 setName(result.data)
-    //             }
-    //         }
-    //     }
-
-    //     fetch().catch(console.error)
+    useEffect(() => {
+        async function fetchData() {
+            const result = await axios.get("http://localhost:8000/get-user-data", {
+                params: {
+                    username: currentUsername
+                }
+            })
+            console.log("....",result)
+            if(result){
+                setNumLikes(result.data.num_likes)
+                setName(result.data.name)
+            }
+        }
+        fetchData();
         
-    // },[currentUsername])
+    },[])
+
+    useEffect(() => {
+        async function fetchData() {
+            const result = await axios.get("http://localhost:8000/view-trips-for-user", {
+                params: {
+                    username: currentUsername
+                }
+            })
+            if(result){
+                setTrips(result.data)
+            }
+        }
+        fetchData();
+        
+    },[])
+
+
 
     return (
     <VStack spacing={10} paddingTop="30px">
@@ -105,7 +122,7 @@ function ProfilePage() {
                             Name
                         </Td>
                         <Td>
-                            {user.name}
+                            {name}
                         </Td>
                     </Tr>
                     <Tr>
@@ -113,7 +130,7 @@ function ProfilePage() {
                             Username
                         </Td>
                         <Td>
-                            {user.username}
+                            {currentUsername}
                         </Td>
                     </Tr>
                     <Tr>
@@ -121,15 +138,15 @@ function ProfilePage() {
                             Total Number of Likes
                         </Td>
                         <Td>
-                            {user.totalLikes}
+                            {numLikes}
                         </Td>
                     </Tr>
                 </Tbody>
               </Table>
             </Card>
             <Heading fontSize="2xl">Your Trips</Heading>
-            {userList.map((user,index) => (
-        <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} includeLikes={false} num={index} total_distance={user.total_distance}/>
+            {trips.map((trip,index) => (
+        <ItineraryCard name={currentUsername} location={trip.location} budget={trip.budget} total_price={trip.total_price} likes={trip.num_likes} days={trip.days} hotel={trip.hotel} hotel_price={trip.hotel_price} includeLikes={false} num={index} total_distance={trip.total_distance}/>
       ))}
     </VStack>
     );

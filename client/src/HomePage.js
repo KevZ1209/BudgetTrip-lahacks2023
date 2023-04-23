@@ -193,7 +193,7 @@ function HomePage() {
                         onClick={() => setTripAdded(!tripAdded)}
                         width={250}
                     >
-                        {tripAdded ? "Remove from profile" : "Add to profile!"}
+                        {tripAdded ? "Remove from profile" : "Add to profile"}
                         </Button>
                 </HStack>
                 <Card key={-1} border='1px' borderColor='white' borderRadius={20} backgroundColor='white'>

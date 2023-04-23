@@ -85,7 +85,7 @@ function LeaderboardPage() {
         <Heading>Feed</Heading>
       </HStack>
     <HStack width="512px">
-    <Select placeholder='Sort by' width="100%" iconColor="black" backgroundColor="white" textColor="black" onClick={(e) => sortBy(e.target.value, ascending)}>
+    <Select placeholder='Sort by' width="100%" iconColor="black" backgroundColor="white" textColor="black" onChange={(e) => sortBy(e.target.value, ascending)}>
         <option value='num_likes'>Likes</option>
         <option value='total_price'>Money</option>
         <option value='total_distance'>Distance</option>
