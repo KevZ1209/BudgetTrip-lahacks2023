@@ -6,6 +6,9 @@ const bcrypt = require('bcrypt');
 const dotenv = require('dotenv')
 const axios = require('axios')
 
+/* other imported files: */
+const services = require('./services.js')
+
 dotenv.config()
 
 // enable access to all origins
@@ -208,6 +211,36 @@ app.post("/like-trip", async function(req, res) {
     else {
         res.send(trip)
     }
+})
+
+app.get("/test-hotels/:location", async function(req, res) {
+    // get location from req.params
+    const { location } = req.params
+
+    // get hotels from services.js
+    const hotels = await services.get_hotels(location)
+
+    res.send(hotels)
+})
+
+app.get("/test-attractions/:location", async function(req, res) {
+    // get location from req.params
+    const { location } = req.params
+
+    // get attractions from services.js
+    const attractions = await services.get_attractions(location)
+
+    res.send(attractions)
+})
+
+app.get("/test-restaurants/:location", async function(req, res) {
+    // get location from req.params
+    const { location } = req.params
+
+    // get restaurants from services.js
+    const restaurants = await services.get_restaurants(location)
+
+    res.send(restaurants)
 })
 
 
