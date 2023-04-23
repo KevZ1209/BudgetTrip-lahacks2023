@@ -60,17 +60,38 @@ function HomePage() {
     const generateTrip = async () => {
         setIsGenerating(true)
         console.log(location, budget, numberOfDays, amusementPark, museum, nationalPark, maxDistance, isGenerating)
-        
+        console.log({
+            location: location,
+            budget: budget,
+            num_days: numberOfDays,
+            max_travel_distance_per_day: maxDistance,
+            amusement_park: String(amusementPark),
+            aquarium: String(aquarium),
+            zoo: String(zoo),
+            museum: String(museum),
+            park: String(nationalPark),
+            shopping_mall: String(shoppingMall),
+            store: String(store),
+
+        })
         // CALL API TO GET TRIP
         const result = await axios.get("http://localhost:8000/generate-trip", {
             params: {
                 location: location,
                 budget: budget,
                 num_days: numberOfDays,
-                distance_from_hotel: maxDistance,
+                max_travel_distance_per_day: maxDistance,
+                amusement_park: String(amusementPark),
+                aquarium: String(aquarium),
+                zoo: String(zoo),
+                museum: String(museum),
+                park: String(nationalPark),
+                shopping_mall: String(shoppingMall),
+                store: String(store)
+
+
             }
         })
-
         console.log(result)
     
         if(result){
@@ -104,6 +125,8 @@ function HomePage() {
                 hotel: trip.hotel.name,
                 budget: budget,
                 total_price: trip.total_price,
+                total_distance: trip.trip_distance_miles,
+                hotel_price: trip.hotel.price,
                 days: days,
             })
 
@@ -256,7 +279,7 @@ function HomePage() {
                         <HStack spacing='auto'>
                             <Text fontSize='xl' color="black" fontWeight="bold">Total Price: ${Math.round(trip.total_price*100)/100}</Text>
                             <Text fontSize='xl' color="black" fontWeight="bold">Total Distance: {Math.round(trip.trip_distance_miles)} miles</Text>
-                            <Text fontSize='xl' color="black" fontWeight="bold">Total Time: {Math.round(trip.trip_time_hours)} hours</Text>
+                            <Text fontSize='xl' color="black" fontWeight="bold">Total Travel Time: {Math.round(trip.trip_time_hours)} hours</Text>
                         </HStack>
                     </CardBody>
                 </Card>

@@ -53,7 +53,7 @@ function ItineraryCard(props) {
                 tripID: props.tripID,
                 username: props.currentUsername,
             })
-            
+
             await props.fetchLikedTrips();
 
             if(result && result.data) {
@@ -122,10 +122,10 @@ function ItineraryCard(props) {
             <CardBody>
                 <HStack spacing="auto">
                 <Heading size="sm">
-                Total Distance: {props.total_distance} miles
+                Total Distance: {Math.round(props.total_distance)} miles
                 </Heading>
                 <Heading size="sm">
-                Total Price: ${props.total_price}
+                Total Price: ${Math.round(props.total_price * 100) / 100}
                 </Heading>
                 </HStack>
                 <HStack spacing="auto">
@@ -133,7 +133,7 @@ function ItineraryCard(props) {
                 
                 </Heading>
                 <Heading size="sm">
-                Budget: ${props.budget}
+                Budget: ${Math.round(props.budget * 100) /100}
                 </Heading>
                 </HStack>
             </CardBody>
@@ -159,7 +159,7 @@ function ItineraryCard(props) {
                 <Heading size='sm' marginBottom="3" marginTop="3">
                     Hotel: {props.hotel}
                 </Heading>
-                <Text as="i">Money Spent: ${props.hotel_price}</Text>
+                <Text as="i">Money Spent: ${Math.round(props.hotel_price*100)/100}</Text>
                 </HStack>
                 <Divider />
                 {props.days.map((day,num) => (
@@ -184,10 +184,10 @@ function ItineraryCard(props) {
                 </VStack>
                 <HStack spacing="auto" width="100%">
                 <Text marginTop="2" marginBottom="2" as="i">
-                    Distance: {day.miles_traveled} miles
+                    Distance: {Math.round(day.miles_traveled)} miles
                 </Text>
                 <Text marginTop="2" marginBottom="2" as="i">
-                    Money Spent: ${day.daily_price}
+                    Money Spent: ${Math.round(day.daily_price * 100) / 100}
                 </Text>
                 </HStack>
                 </>
