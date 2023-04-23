@@ -103,7 +103,7 @@ function HomePage() {
                 <NumberInputField
                     value={budget}
                     onChange={e => setBudget(e.target.value)}
-                    placeholder='Enter your buget ($)'
+                    placeholder='Enter your budget ($)'
                     backgroundColor="white"
                     color="black"
                     w={300}

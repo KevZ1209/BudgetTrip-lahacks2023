@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { ChakraProvider, extendTheme, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, HStack, Text, Divider, Button, VStack } from '@chakra-ui/react'
 import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
@@ -7,12 +7,13 @@ import LeaderboardPage from "./LeaderboardPage";
 import LoginPage from "./LoginPage";
 import './App.css';
 import UserContext from "./UserContext";
-
-
+import CustomNavBar from "./CustomNavBar";
 
 
 function App() {
   const [currentUsername, setCurrentUsername] = useState(null);
+
+  // const location = useLocation();
 
   const theme = extendTheme({
     colors: {
@@ -47,6 +48,7 @@ function App() {
       },
     },
   })
+
   
   return (
     <UserContext.Provider value={{currentUsername, setCurrentUsername}}>
@@ -73,40 +75,7 @@ function App() {
           </Breadcrumb>
         )} */}
         {currentUsername && (
-          <VStack id="navbarstack" align="strech">
-            <HStack spacing="50px" paddingLeft="30px" paddingTop="20px" paddingBottom="20px" backgroundColor="brand.100">
-              {/* LOGO */}
-              <NavLink
-                to="/"
-                style={{ textDecoration: "none", marginRight: "0.5rem" }}
-                className="navButton"
-              >
-                <Text fontSize="lg" fontWeight="bold" _hover={{ textDecoration: "none" }}>Home</Text>
-              </NavLink>
-              <NavLink
-                to="/profile"
-                style={{ textDecoration: "none", marginRight: "0.5rem" }}
-                className="navButton"
-              >
-                <Text fontSize="lg" fontWeight="bold">Profile</Text>
-              </NavLink>
-              <NavLink
-                to="/feed"
-                style={{ textDecoration: "none", marginRight: "0.5rem" }}
-                className="navButton"
-              >
-                <Text fontSize="lg" fontWeight="bold">Feed</Text>
-              </NavLink>
-              <NavLink
-                to="/login"
-                style={{ textDecoration: "none", marginRight: "0.5rem" }}
-                className="navButton"
-              >
-                <Text fontSize="lg" fontWeight="bold">Login</Text>
-              </NavLink>
-            </HStack>
-            <Divider width="99%" borderWidth="1px" borderColor="white"/>
-          </VStack>
+          <CustomNavBar />
         )}
           <Routes>
             <Route exact path="/" element={currentUsername ? <HomePage/> : <LoginPage/>}/>

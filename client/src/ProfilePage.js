@@ -63,9 +63,8 @@ function ProfilePage() {
         },
     ];
     return (
-    <div id="profile">
-        <VStack spacing={10}>
-        <Heading>Profile Page</Heading>
+    <VStack spacing={10} paddingTop="30px">
+        <Heading>Profile</Heading>
             <Card width='512px'>
               <Table>
                 <Tbody>
@@ -101,7 +100,6 @@ function ProfilePage() {
         <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} includeLikes={false} num={index}/>
       ))}
     </VStack>
-    </div>
     );
 }
 
