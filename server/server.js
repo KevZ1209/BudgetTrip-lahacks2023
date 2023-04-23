@@ -377,10 +377,12 @@ app.get("/generate-trip", async function(req, res) {
 
     // console.log(attractions)
 
-    res.send(unique_attractions)
+    const trip = await algorithm.tripListMaker(hotels,unique_attractions,restaurants,budget,num_days, max_travel_distance_per_day, amusement_park, museum, park, shopping_mall, store, zoo, aquarium, 1)
+
+    res.send(trip)
     
     // generate a trip using algorithm
-    // const trip = await algorithm.tripListMaker(hotels,attractions,restaurants,budget,num_days, max_travel_distance_per_day, amusement_park, museum, park, shopping_mall, store, zoo, aquarium, 1)
+    
 
     // res.send(trip)
 
