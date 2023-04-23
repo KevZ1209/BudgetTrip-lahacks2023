@@ -22,7 +22,7 @@ function ItineraryCard(props) {
                     <Text>{props.location}</Text>
                     </Box>
                 </Flex>
-                <Button width="100px" variant='ghost' backgroundColor={liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {setLiked(!liked)}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
+                <Button width="125px" variant='ghost' backgroundColor={liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {setLiked(!liked)}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
                 Like ({props.likes})
                 </Button>                
                 </Flex>
