@@ -98,7 +98,7 @@ function LoginPage() {
             {!currentUsername && (
                 <>
                     <Image src='/logo.png' h="120px" w="120px"/>
-                    <Heading fontSize="6xl">budgetTRIP</Heading>
+                    <Heading fontSize="6xl">budgetTrip</Heading>
                 </>
             )}
             <Heading>Login</Heading>

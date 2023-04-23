@@ -234,8 +234,8 @@ function HomePage() {
                             Zoo
                         </Checkbox>
                         <Divider />
-                        <Text>Max distance from hotel: {maxDistance} miles</Text>
-                        <Slider aria-label='slider-ex-2' colorScheme='brand' defaultValue={50} min={5} max={250} step={1} onChange={(val) => setMaxDistance(val)}>
+                        <Text>Max distance per day: {maxDistance} miles</Text>
+                        <Slider aria-label='slider-ex-2' colorScheme='brand' defaultValue={100} min={5} max={250} step={1} onChange={(val) => setMaxDistance(val)}>
                             <SliderTrack>
                                 <SliderFilledTrack />
                             </SliderTrack>
