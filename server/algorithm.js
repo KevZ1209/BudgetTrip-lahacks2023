@@ -190,9 +190,15 @@ const dummy_attractions = [
     rating: 4.6,
     address: "The Embarcadero, San Francisco, CA 94133, United States",
     photo_reference:
-      "AUjq9jl6yhZUBNorDhPZdCBrx8jngP7KtMjcaTTtqbmhYqxMbwFhfJAcPCuTZAH9t-oqkI8oak1qyWxjrL_-FI_jAUFs5EwHbp6Kx0AxRbChFM4OpVSwjPn3Srp48Q-ZoURVTJRZ02WW3cQalCtBlYa3jV5qP9s2YG9C_t3RFjpR37_S3k4",
+      "AUjq9jmYUsXeU0N4QAz3xC0AhGlU9zHuZUv5fQZvT1-FSA1BGD4VgmAZifb93AIX1FqKyep0pC6SpBTic4j_moV2FIQN2zzmpTSprcvw8TqheMFeTS5P53cS2JHRFUHdf_szTKoVaoOaCAPEiiTnTDGLwmqmZr7HvtRHDrEEm1pB01bXjVw",
     place_id: "ChIJHSGzi_yAhYARnrPmDWAx9ro",
-    num_ratings: 110780,
+    num_ratings: 110783,
+    categories: [
+      "tourist_attraction",
+      "shopping_mall",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -200,9 +206,10 @@ const dummy_attractions = [
     rating: 4.3,
     address: "145 Jefferson St, San Francisco, CA 94133, United States",
     photo_reference:
-      "AUjq9jn1KBHNGVv1hqk-aDinM-_Dv8823dPDJ-5YWKJsJSy1W8JFvZA7ZmN1_FW0a8jD9N7jQrWZHl0E5q1VyylNeNQLKju884HcExLDGdpFD_7F3InYwsWqlQ2FU3DLj_bUkGkl-O68Rphhx_F0BT8cVWLaEo6lu2UDh_r_NEbuPcEuAZF4",
+      "AUjq9jkM1gr5dHG2XnUgPyeIQrL_vgRPkLHVqhw48khIcgWDw4D2-KdEPV5cxLY0XPMUbu-Qr4zWrQEZFcJHwYS-LgIfk2Kht3T1w7-pCJ7QdFDOt218yP2oiNhK3VkcLcXEQOj2QOE58aDjHZTGJd_9JndT0un5nOrL67KkTdo6LaUJ9bMV",
     place_id: "ChIJy3Ksp-OAhYARthoGyFztDtA",
     num_ratings: 2430,
+    categories: ["tourist_attraction", "point_of_interest", "establishment"],
     price: 0,
   },
   {
@@ -210,9 +217,15 @@ const dummy_attractions = [
     rating: 4.6,
     address: "San Francisco, CA 94109, United States",
     photo_reference:
-      "AUjq9jnuaGoDnzXLktfgswnDgmOaA4JU66qxVTMy4dFl1gi9E_SG18_OZEyYjj-61uNEC0D9aArzzV2JyGMnyILg9wHpgSeC5CQhfMSsjtufRW2TLsjmh_7abmKa4-JLimzgxI91RpVORw7D1YsDxSo09Ohb9HuoRAH2WNzJy5vbMxLFLLWk",
+      "AUjq9jkfKy88DCxJSGteHRF3tnoJzkbZTAJqi-XJQl-tyyv7BMUhx2-cUPIWKb4JDdm7aKP6ouS6OB8BHwKO6iIAIRmmVxQjg4hLHH98Wx9UfsPh1ZI0YsH4M_0Q0zLqBTqo3l_DkpHVkeWV431XjfmYA-GNZc9NQkX_HWdl_SY1WDOWxDsZ",
     place_id: "ChIJ7bPtqOGAhYARlc1YRlOfGrc",
     num_ratings: 4555,
+    categories: [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 25,
   },
   {
@@ -220,9 +233,17 @@ const dummy_attractions = [
     rating: 4.8,
     address: "680 Point Lobos Ave, San Francisco, CA 94121, United States",
     photo_reference:
-      "AUjq9jm-EQatVnTKqeSZxsALFDHlW0Pl15U4VBj9jUoKRcvrLcez0Xn1I5KyYPXzWPoP77CCcdfhGHajVXMxbFHsvHfW8G1yQ8PJgiuhsrkQNXjMkabxG8gDYiJSBkWvu4RjczImDGrYiGgzN0hAlacmfZOHOAlE4uLfGbpOwdgJczmSCR82",
+      "AUjq9jmCGrGw8UabgJuzPsWOmbh2GW8LFtE4MBN2ko7oRjf3K2ZudgpYSc6vcti320iKUliw5wpWhtAedEeiAfsfMPyYw6y5jz2l71n2BZatGbeafXfXicnH4UB7vtDebEPJd_sKWCYUhbgVvAeAkhaHlwYvy4-oOH7PxNqzJsSJaeBo_Sz6",
     place_id: "ChIJud4Rs7KHhYARZX7u45tQsjA",
     num_ratings: 7204,
+    categories: [
+      "tourist_attraction",
+      "park",
+      "travel_agency",
+      "point_of_interest",
+      "store",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -230,9 +251,15 @@ const dummy_attractions = [
     rating: 4.7,
     address: "24 Willie Mays Plaza, San Francisco, CA 94107, United States",
     photo_reference:
-      "AUjq9jm-yr1tnsq9gj2D1ztJ1Q6lVorVIwUeAPR3lW25AQRlYvwzshOUyw7Epx4kVUlydUm_DCxJaqjThXryjQylS8z9_5TgpkWF36ZcnU_RFers5bmfzCrCRwzeTKOuEbfZR9Dio9KvF6BpfXu2VtKEsCDECWqLoNL0z1119bGIbD1YqHII",
+      "AUjq9jnkHe_YhlFrG6D290kuOL4eq_TuKZDjTZdtlB9P5kkOA8UUaqSG9cxXaeGfFISFZAAXMhrzDwCLz2yUKLXo2ITNJyy1xDn39LUFycN9i6vguKwfvD8wfO069dfEkJlPlepod5uYWBj6sUdM8PADbRE7GrBRHYVr-_hj158yrw-NEK8V",
     place_id: "ChIJ_T25cNd_j4ARehGmHe0pT84",
     num_ratings: 24242,
+    categories: [
+      "stadium",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -240,9 +267,15 @@ const dummy_attractions = [
     rating: 4.8,
     address: "Vallejo & Taylor, San Francisco, CA 94133, United States",
     photo_reference:
-      "AUjq9jmcVV2ZHTvQ8DqB0K7mnacbJv2u5VsXTg6Fhqcban7ASmcsdz8iNdMGowzCbz47BxmyG6OFkBaQ7UgAsr9cDX3KcYSWDd0tJirFHDA95_DQ5yN6acpByUha9n1M3vl87Fvzuh67a-ifwflvEN0A3pEbqboks9kyiEZyBOYCI2LDZJuh",
+      "AUjq9jner1wpdTI-MFIG5sKeexXdm2iDKjeGsTT3NWuYvjJiu_r3bOpsF4UK8BT-qmL8Bf_LVEoIKvAWupr_5SzuqAmzAWGwo2VeNWyt5pTYyZ-oQjMhoOuoNvTHhhKQAZRXdBNlCXbCOg38YSSxEfe-Sk8t2swhXqujneNKJRyX56J_jiP0",
     place_id: "ChIJdx6kBe6AhYARsPFmpUAvvcY",
-    num_ratings: 1225,
+    num_ratings: 1226,
+    categories: [
+      "tourist_attraction",
+      "park",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -250,9 +283,10 @@ const dummy_attractions = [
     rating: 4.6,
     address: "2905 Hyde St, San Francisco, CA 94109, United States",
     photo_reference:
-      "AUjq9jkxh0nT0Bvw94DRB__vqTNEttLekfvVcG2TinybKZKNdQSpkOi1rq71esGk8QsVo3VKwb-UGbHrZLSMYeaSINlaDnr10GT0Ng1olobEdOw-sBcW-IDAZGEe5ZSc7nSHneY5yl_BysQ8PwvfCj58-f5vvv5rOzJcoUs-WG7e8kwWjvD_",
+      "AUjq9jnaF4Tfi4Pf0FQHg5ZlB2j2c7GaEHu6OI9id0aJSMZc-dXpKF73o6bHwUDS6FXgf75f6PUVEnokkk_AYJ-e0ygI10gyAnGyGD5EJDXkil3PEyf_Kb0ovm2lZMvofSXCcORLLpxkMrtwVpJj-Olyb5iGQ1OWvc7YKiQePh-KtuBwAzHn",
     place_id: "ChIJ7XU8qeGAhYARMd5brm8JUSs",
     num_ratings: 594,
+    categories: ["tourist_attraction", "point_of_interest", "establishment"],
     price: 0,
   },
   {
@@ -261,9 +295,15 @@ const dummy_attractions = [
     address:
       "Pier 15 Embarcadero at, Green St, San Francisco, CA 94111, United States",
     photo_reference:
-      "AUjq9jmXVzehidjHBII7uMZxSeQnTfvogsfEQBrI3X1ZGYy1ScqjaJNcWPh3_DIqOcn_klOjDZ7ZDSkkRJkHEa0rChj0V-fn3EQLSlRBwZmLLW-TWktbWVyWkkjY00AfCcUVs-ryJvJQ850qtopMAZzm8iB5MA8vYlZV7y3F0jCTp3qgbzz6",
+      "AUjq9jnulKNNJ34izELZN9HVoQs0X0XFuZ9D7Ta3mhH4Mml0XetBFZWSyq8Si9J3EEjGhpoDpkBSqCouLgEpnfpBJihv8ERP3OSXywI7ZyvlBSxM1n8ThnRojLEqImOPXB22EZAdxg382eaLSc8BcXy90meKtIiR6BQOaBScCEn0eDNSZFSB",
     place_id: "ChIJk2vl5NSGhYARwPGvs_ubIws",
     num_ratings: 7713,
+    categories: [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 25,
   },
   {
@@ -271,9 +311,10 @@ const dummy_attractions = [
     rating: 4.8,
     address: "Golden Gate Bridge, San Francisco, CA, United States",
     photo_reference:
-      "AUjq9jm5a39Fkc8vBp-Rq9Qh4LXDGyRPLhFH2clW3WS3xkjJylfNs5s8rvkuxferh0bejhkKvzNaq0BXliYRSFpxzcQwgJ7dynMpK4YOiftP_OT1sO7s4waylintzEONYOgBQOlOIemaFW3eJbTe2zXopYQnK94qsoNFNKCEVSqGwV2SnKWb",
+      "AUjq9jkGi961g39xKBuPASC6Q5SABpdgN7-ztqhaQz4ISyf0ZvWSB3MBxpedGVECfBMp8G7dM9c9JDPGXSZfCDJKtH6tmAzzeU6hAeSVkvaHXzR1WRCCjBa-voKvfGQZyAoOmynpxXbnz477Lx8IjEQmnXvdP0Gg0gYaDqBDjf3wPqOU8sE4",
     place_id: "ChIJw____96GhYARCVVwg5cT7c0",
-    num_ratings: 65662,
+    num_ratings: 65663,
+    categories: ["tourist_attraction", "point_of_interest", "establishment"],
     price: 0,
   },
   {
@@ -282,9 +323,15 @@ const dummy_attractions = [
     address:
       "PIER 39 The Embarcadero &, Beach St, San Francisco, CA 94133, United States",
     photo_reference:
-      "AUjq9jkLjF-yohf6ZSZNcmoUiGtn24EJW9zeP7hdH1rYZFdZuVEjXybgAprAtoL4H9X8ZsC6My7QLZBPLDBlm0jUuC-pT3i1IGX1mXHjVscAIhZG7_YaX9nwatwzC89fxVqebcVX0yoa8fAVWilcl7auAnpRwedqaioXzlz6sdFPDw7XJcWt",
+      "AUjq9jn9-x8ZahYPZkl_cjsG0oDPNLLGQExedhilR29oE5f5PPv7VpuyVcTgwjj-wXEHEV9U2LrOcROzF4yvxjcJ_d0_yRzXJ4mx6IgVQ6rNtbf2BZiyY6IrOfvTA-yY0nhVe30zxLJuVZJa1wtyFBsduCabbvjd3JGHrfHyjLEXH7iR9P10",
     place_id: "ChIJr6OmefyAhYAR-h8_vW9p5GQ",
-    num_ratings: 4452,
+    num_ratings: 4454,
+    categories: [
+      "aquarium",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 75,
   },
   {
@@ -292,9 +339,10 @@ const dummy_attractions = [
     rating: 4.7,
     address: "501 Twin Peaks Blvd, San Francisco, CA 94114, United States",
     photo_reference:
-      "AUjq9jlBgOdDTzELKKYz4dSDle7a7z4jonxNsWtBDwAc2D9Mg1Tp40Tt6rRDzvBeBYwjHi_5HdLI6Y0nmVJF0ntHba97-K60hr88dYdczjiXz--6HyPd_TcGY1Cdv9JrreBK8HVy52jfPtEriXz9wSg6ijiLdRecC7SQD-8HkC3o5AQTMGPN",
+      "AUjq9jnl-gpNZIWnvpaNI5l0ChkmI6Nas1VmSsqK0ZRg7zyChg8SCEF-aHfwnnEKzDVBCgmrqI9u0McGS6pGCinnmk5d8lQu6lhdjJc25yLN0zQyvGlu1FlSF57p8xCPJ_uu0dLvu1dAa8PP-ldLKWmQtLZUVrnyRJ9p7KMZ1pn3SMail9dE",
     place_id: "ChIJt3HwrOJ9j4ARbW6uAcmhz7I",
-    num_ratings: 12109,
+    num_ratings: 12110,
+    categories: ["park", "point_of_interest", "establishment"],
     price: 0,
   },
   {
@@ -302,9 +350,15 @@ const dummy_attractions = [
     rating: 4.7,
     address: "100 34th Ave, San Francisco, CA 94121, United States",
     photo_reference:
-      "AUjq9jlQLMlXMutfo2HK6N1nYTr1WnvBDFjeVZw-qmdWuyFIMBA0qmgL2kfloAe1UrnDTT5_lfV_ZIhDcypUXjR8LDnCy7b8wkUiO77XnTMQX8Voa5nxW917iID4ldkNbLAuk-cfbemCcMbeI4DDM6jqn-A_Y7VJIObBBxem3oNQL4jkeCJp",
+      "AUjq9jn-Tl4NGB_jC28dz6LHXinVWDMtZInZP7d_tF1GfCUi3Wz1AEjA4KBmJh7F8hEMl7W2y0Ij77G_L_E0Vcms1FzPwtBKJBVntlh0dpyERFcLRngRwA6oN_rC-sQJ-0UueRf1srsnpfS50j_ZWoJIGOGcY8T5CgzBojBmsa-YzotnXc6e",
     place_id: "ChIJabri1qyHhYARLE0Vd4zY_7k",
     num_ratings: 3427,
+    categories: [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 25,
   },
   {
@@ -312,9 +366,15 @@ const dummy_attractions = [
     rating: 4.7,
     address: "San Francisco, CA 94121, United States",
     photo_reference:
-      "AUjq9jlgVLQHBmX04y4HOMm-4BEr4PzLeFECmETX1L2EffHMe2kEPk7yaISAGxyy_LznN92TDe4cbEP377xFbH7bZBL9-D40EYyzxwdMtPS74gnkx9lI8k5BbsHF8qN_c7W4ma58hj85VKgLajqMzANKP_Fo-eYVE37HCc4qnaBD5_YFeFtA",
+      "AUjq9jl2Y7keaZm3MDkcHkeeShlSMygkG4JvgpayuxZqpR9fm-OZEBQBHy4q2UpzSw4aBoPblEswrj_pCUHlFzKW3FytrBfR3cZ_TRn49yesIxbBO-eLefJh4eQTxsRfs9wPawwZjzyc0rf2wSQJK_Pdcw1oEpxeNQXGgwkl-V0pLfNQ1Tbk",
     place_id: "ChIJR760Uk2GhYARqZOGfcMz31U",
     num_ratings: 5192,
+    categories: [
+      "park",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -322,9 +382,10 @@ const dummy_attractions = [
     rating: 4.5,
     address: "2801 Leavenworth St, San Francisco, CA 94133, United States",
     photo_reference:
-      "AUjq9jk3UApHFlTaJMsw4ppSnlse_KnPoI61NtDVYTwoyrUUhMI8KTl20l7RCQKvBM7coReiaIxw_xSqX4mLsk3V8ay-gc148EtOG_nRfj-mCGF7OGY8Qn-nNhMOV6eqi_rBgLVZkunLzVC7DfU9vE5e72wu4xC_8ftgZHj8AwrI8dKbTMCA",
+      "AUjq9jl3svnYFqztVNWH1X2KO3edaVisSrPCe8ljt2ij10SmimDkgStY8M1Yznv-FJpyEYfEynG1BynlGar2QArIxGxyu15UCdegAUuKrFL5XY4m43MntUGOc8ZmJ91Iz69NTfIQALD2SZNxWlicafdMY-Qtfck-AbzrmZjt7NtYZL8p0vxt",
     place_id: "ChIJIbjkBuOAhYAR3OzY8Djb7Kc",
     num_ratings: 8603,
+    categories: ["tourist_attraction", "point_of_interest", "establishment"],
     price: 0,
   },
   {
@@ -333,9 +394,15 @@ const dummy_attractions = [
     address:
       "50 Hagiwara Tea Garden Dr, San Francisco, CA 94118, United States",
     photo_reference:
-      "AUjq9jnPD4ipCR25HArXuxPsZuiy4YlFH-2NllnTbv0TylkqRLtxiUcJ_rUlKxmJcSvWVqgC73o9-u1dc2yVm6jOdWkS6xFwDItAUFpSD6zbppoaOoUeEQeQU9t7VFGqKp4Eg8uQBmqIx9fjuKrpBwqwAvx035oXoqITgS1VqnoXgNqDYU0n",
+      "AUjq9jlKI_-1C3pmfrM515WQA-UX6TdzVrbl2axBcqbJSCZLcwBBUSZvXqdxqLnVTPSaHwgl2MSFUQRY_1vAGbDv3JtAtxZeK3AHaH6aPVdByYkm2rumzpzsJxCO7Xr0ihhmPpvN7sbe0OT2uunmYURH6v0pd3-AK9E2x-dI0w86F4q_2L9R",
     place_id: "ChIJI7NivpmAhYARSuRPlbbn_2w",
     num_ratings: 7081,
+    categories: [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 25,
   },
   {
@@ -343,9 +410,15 @@ const dummy_attractions = [
     rating: 4.7,
     address: "846 Point Lobos Ave, San Francisco, CA 94121, United States",
     photo_reference:
-      "AUjq9jmK1xTkEM3VOHyZmww0OLptmRMsVlPVlEQx-K8Up17tUF_wGb3VTsQRNcqjQtgtwzNwKYC8P8waxH_OmCalBzYmF1vH2KbuphUWCyk088vgsV6utHZiSB_Om4xqBnVcUUwPZwEvdXDPWtIUxwiWLwwsV0tWda3_mYQOvx6siuD0aRQG",
+      "AUjq9jkX2bShKGCwE_BDcw5IvHpI8ZBbayl5P8_YpVxweVRU87OXq8oDvgiIjG_PZYxmZ8-RSspuAFsksn3x7P3gF89oPKY_MKjdx2Q2xvqtFQDHGSSmdqvP0QBd7Ed9Pv7nuMmUf4LYrCWfKdS_XlRjbsXQlFvygj0EFOh_JAsH1g8f66UA",
     place_id: "ChIJ-U68LrSHhYARWgGKnK3Bc14",
     num_ratings: 1621,
+    categories: [
+      "park",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -353,9 +426,15 @@ const dummy_attractions = [
     rating: 4.7,
     address: "Dolores St &, 19th St, San Francisco, CA 94114, United States",
     photo_reference:
-      "AUjq9jnpafWojztU0ljYkMzoHk-hy7TOfi4YnLD9hRv4NuHgvVMTL1OfZU9i3frPnl3f9CIFWVIwiPXtHodOTqBSbI-tUK_BlbkxzeU20WKr4ytU7FHBxbpURtOks36nJqyWotdv7Rh6t9di_z8XP3q9bKditkRf0lwwSmamK_vKPPXWGwrs",
+      "AUjq9jkiwsG_jNpNlS3w9fbQdKCjtLLfJH59xZ-9bpOiCceBI2yzrYDZd1JxhQQjmeBHbsCDLXqYyOy2cBF_28PXYNBioMWwosMOTj7ItpH9g7KTkzLpFZUEXNVch8tseCO14Mk-DpXq1K0_d-jTn83GvoW8QyasIBhMhJ5ORR-V7xZ5aadS",
     place_id: "ChIJp3CqeRd-j4ARYI0i8e_kGKY",
     num_ratings: 13057,
+    categories: [
+      "park",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -363,9 +442,15 @@ const dummy_attractions = [
     rating: 4.7,
     address: "201 Marine Dr, San Francisco, CA 94129, United States",
     photo_reference:
-      "AUjq9jlYgo4HShAW2CsdYqWJplBzePve3EnSP3xfuBYEl-XYg-w_F05nrVoUbVBTAOtIgCkhT0O_e-UWcp7j6Y0fz154nXfZfyvNfT2nwAZl9tse9VB5vpY1UPrz5EgFG0QsRRxlIwTr4Tkyb56WF4C-VRKxVv6lq6aiozMA-YGU8L3zMNhh",
+      "AUjq9jmtew3V-IW8xfxC4Wvl1GsElUIenYiCSpFhjeojEa9gTkOdcxhm-ouKyIr8_xKOi1zwVajyvqajGERMB-p8t7v-Bet4HVJJX35uTcI5xSP6hVMxCdSF8KJZIexb1ZxxQbfRHeckysJWJfFhwWgzXrIoIkWg0a5g2cHUyJ0r75XHosgv",
     place_id: "ChIJ_fRRLeqGhYAROWsCl5027X8",
     num_ratings: 2916,
+    categories: [
+      "tourist_attraction",
+      "park",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -373,9 +458,15 @@ const dummy_attractions = [
     rating: 4.8,
     address: "1705 14th Ave, San Francisco, CA 94122, United States",
     photo_reference:
-      "AUjq9jnnGF5e-pZrhVTKdbA0LYnJN9Ile_E6WKDPG00DJesK3HvTwi-ylIiIy2Y9hsFhRJ9k4UBFapIeHFCU6CfOFpkk7JSEbtRsOhIWK7RZNMp8pv2BrxiFMeajgjg4PJffE6G39uo3BR0VujN5lHftf54nADFIXHRJd21hn08FBtsZVT4b",
+      "AUjq9jlBomjAoyUsgXK5dj-m-nyzEAO1VuQmDQCv_g1wVl-JbXZh1dJaTS3zkt9-ZNd9eC82CO8QOXj4yM8Tt_TyW5CPN3w91mXjOKYUezw2i7I9iaWHMDGbXBgX468noATqVTvZ-Ggjp6nU-yTv9vthd9b70gQOApGfNLRZnVwgQJMUkuAK",
     place_id: "ChIJFS16LmCHhYAR9-5CGavbV2k",
     num_ratings: 825,
+    categories: [
+      "park",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment",
+    ],
     price: 0,
   },
   {
@@ -384,9 +475,10 @@ const dummy_attractions = [
     address:
       "50 Hagiwara Tea Garden Dr, San Francisco, CA 94118, United States",
     photo_reference:
-      "AUjq9jkbBQUKmxSq7G24cIuahgK87Ji67hLG0Ftw1qBPzdbW96WcVeMAzA02iSU3yaQD3h_TkKJTM4L0jdCIoOQHNHKtjIXyh_98rWqxcMsUEexBJ7zHjsEFomBCtHxOILTd89VmDk9XjXNjYE_BC48jo7xXFKTvjA2DxSwZn6JDEurhFJkc",
+      "AUjq9jlwHdjH2I6TGoI_DhJkIS2MA2qPzQ0MJZ7wLPNvLOnhZJt4kS447WIVWeBMTYUv6FMIRSojR9i2jR7mGrw1v5C1JZR5sr13VX1Jpv8Sqcsa563Ho-5eQflufo-DlB7RmBzf9f4wD2y2N4O9IUm9pwsLY2kXJeIan9BOkeS7kcs0q9E_",
     place_id: "ChIJITNC7kGHhYARDRE7mPlUhfU",
     num_ratings: 210,
+    categories: ["tourist_attraction", "point_of_interest", "establishment"],
     price: 0,
   },
 ];
@@ -499,14 +591,23 @@ const tripListMaker = async (
   attractions,
   restaurants,
   budget,
-  num_days
+  num_days,
+  max_travel_distance_per_day,
+  amusement_park,
+  museum,
+  park,
+  shopping_mall,
+  store,
+  zoo,
+  aquarium,
+  timesCalled
 ) => {
   const randint = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
+  // let distance_learning_multiplier = 1000*timesCalled;
   let stars_multiplier = 200;
-  let mile_price_constant = 0.65; // FIX FIX FIX
   let possibleCombs = 2000;
   let possibleItineraries = [];
 
@@ -533,10 +634,15 @@ const tripListMaker = async (
       randomized_attraction_price =
         randomized_attraction_price - (randomized_attraction_price % 5);
 
+      let randomized_transportation_price = randint(20, 40);
+      randomized_transportation_price =
+        randomized_transportation_price - (randomized_transportation_price % 5);
+
       let daily_price =
         randomized_attraction_price +
         restaurantsCopy[restaurantIndex1].price +
-        restaurantsCopy[restaurantIndex2].price;
+        restaurantsCopy[restaurantIndex2].price +
+        randomized_transportation_price;
 
       total_price += daily_price;
 
@@ -567,6 +673,108 @@ const tripListMaker = async (
       (hotels[hotelIndex].rating * stars_multiplier +
         hotels[hotelIndex].num_ratings) *
       num_days;
+
+    //   amusement_park,
+    //   museum,
+    //   park,
+    //   shopping_mall,
+    //   store,
+    //   zoo,
+    //   aquarium,
+
+    if (amusement_park) {
+      let contains_amusement_park = false;
+      for (let g = 0; g < currentItinerary.length; g++) {
+        if (
+          currentItinerary[g].activity.categories.includes("amusement_park")
+        ) {
+          contains_amusement_park = true;
+          break;
+        }
+      }
+      if (!contains_amusement_park) {
+        continue;
+      }
+    }
+
+    if (museum) {
+      let contains_museum = false;
+      for (let g = 0; g < currentItinerary.length; g++) {
+        if (currentItinerary[g].activity.categories.includes("museum")) {
+          contains_museum = true;
+          break;
+        }
+      }
+      if (!contains_museum) {
+        continue;
+      }
+    }
+
+    if (park) {
+      let contains_park = false;
+      for (let g = 0; g < currentItinerary.length; g++) {
+        if (currentItinerary[g].activity.categories.includes("park")) {
+          contains_park = true;
+          break;
+        }
+      }
+      if (!contains_park) {
+        continue;
+      }
+    }
+
+    if (shopping_mall) {
+      let contains_shopping_mall = false;
+      for (let g = 0; g < currentItinerary.length; g++) {
+        if (currentItinerary[g].activity.categories.includes("shopping_mall")) {
+          contains_shopping_mall = true;
+          break;
+        }
+      }
+      if (!contains_shopping_mall) {
+        continue;
+      }
+    }
+
+    if (store) {
+      let contains_store = false;
+      for (let g = 0; g < currentItinerary.length; g++) {
+        if (currentItinerary[g].activity.categories.includes("store")) {
+          contains_store = true;
+          break;
+        }
+      }
+      if (!contains_store) {
+        continue;
+      }
+    }
+
+    if (zoo) {
+      let contains_zoo = false;
+      for (let g = 0; g < currentItinerary.length; g++) {
+        if (currentItinerary[g].activity.categories.includes("zoo")) {
+          contains_zoo = true;
+          break;
+        }
+      }
+      if (!contains_zoo) {
+        continue;
+      }
+    }
+
+    if (aquarium) {
+      let contains_aquarium = false;
+      for (let g = 0; g < currentItinerary.length; g++) {
+        if (currentItinerary[g].activity.categories.includes("aquarium")) {
+          contains_aquarium = true;
+          break;
+        }
+      }
+      if (!contains_aquarium) {
+        continue;
+      }
+    }
+
     if (total_price <= budget) {
       possibleItineraries.push({
         hotel: hotels[hotelIndex],
@@ -579,7 +787,9 @@ const tripListMaker = async (
 
   possibleItineraries.sort((a, b) => b.total_likeability - a.total_likeability);
   if (possibleItineraries.length == 0) {
-    console.log("You ain't getting jack on that budget, bucko");
+    console.log(
+      "No possible itineraries found. Consider changing location or increasing budget."
+    );
     return null;
   }
 
@@ -618,6 +828,7 @@ const tripListMaker = async (
 
   let trip_distance = 0;
   let trip_time = 0;
+
   for (let i = 0; i < possibleItineraries[0].itinerary.length; i++) {
     attractionDistanceString =
       response.data.rows[0].elements[3 * i].distance.text;
@@ -676,11 +887,75 @@ const tripListMaker = async (
   possibleItineraries[0].trip_distance_miles = trip_distance;
   possibleItineraries[0].trip_time_hours = trip_time / 60;
 
-  //console.log(possibleItineraries[0]);
+  if (timesCalled < 10) {
+    for (let p = 0; p < possibleItineraries[0].itinerary.length; p++) {
+      if (
+        possibleItineraries[0].itinerary[p].daily_distance_miles >
+        max_travel_distance_per_day
+      ) {
+        console.log("Trying again");
+        timesCalled++;
+        return await tripListMaker(
+          hotels,
+          attractions,
+          restaurants,
+          budget,
+          num_days,
+          max_travel_distance_per_day,
+          amusement_park,
+          museum,
+          park,
+          shopping_mall,
+          store,
+          zoo,
+          aquarium,
+          timesCalled
+        );
+      }
+    }
+  } else {
+    console.log(
+      "Max tries reached. Please try increasing max distance per day."
+    );
+    return null;
+  }
+
+  console.log(possibleItineraries[0]);
   return possibleItineraries[0];
 };
 
-//tripListMaker(dummy_hotels, dummy_attractions, dummy_restaurants, 1000, 3);
+tripListMaker(
+  dummy_hotels,
+  dummy_attractions,
+  dummy_restaurants,
+  1000,
+  3,
+  17,
+  false,
+  true,
+  false,
+  false,
+  false,
+  true,
+  false,
+  false,
+  1
+);
+
+// hotels,
+//   attractions,
+//   restaurants,
+//   budget,
+//   num_days,
+//   distance_from_hotel,
+//   amusement_park,
+//   museum,
+//   park,
+//   shopping_mall,
+//   store,
+//   zoo,
+//   aquarium,
+//   timesCalled
 
 //export my functions
 module.exports = { tripListMaker };
