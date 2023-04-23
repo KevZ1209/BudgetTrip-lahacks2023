@@ -164,6 +164,7 @@ app.post("/create-trip", async function(req, res) {
         hotel,
         total_price,
         budget,
+        total_price: 0,
         num_likes: 0,
         days
     })
@@ -312,13 +313,13 @@ app.get("/test-restaurants/:location", async function(req, res) {
 app.get("/generate-trip", async function(req, res) {
     // get location from req.params
 
+    
+    let { location, budget, num_days, max_travel_distance_per_day, amusement_park, aquarium, zoo, museum, park, shopping_mall, store } = req.body
 
-    let { location, budget, num_days } = req.query
-    console.log("I'm in")
-
-    // cast budget and num_days to ints
+    // cast to ints
     budget = parseInt(budget)
     num_days = parseInt(num_days)
+    distance_from_hotel = parseInt(distance_from_hotel)
 
     // get hotels from services.js
     const hotels = await services.get_hotels(location)
@@ -333,7 +334,7 @@ app.get("/generate-trip", async function(req, res) {
     // console.log(restaurants)
 
     // generate a trip using algorithm
-    const trip = await algorithm.tripListMaker(hotels,attractions,restaurants,budget,num_days)
+    const trip = await algorithm.tripListMaker(hotels,attractions,restaurants,budget,num_days, max_travel_distance_per_day, amusement_park, museum, park, shopping_mall, store, zoo, aquarium, 1)
 
     res.send(trip)
 
