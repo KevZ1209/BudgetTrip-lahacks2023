@@ -87,7 +87,7 @@ function ProfilePage() {
             </Card>
             <Heading fontSize="2xl">Your Trips</Heading>
             {trips.map((trip,index) => (
-        <ItineraryCard name={currentUsername} location={trip.location} budget={trip.budget} total_price={trip.total_price} likes={trip.num_likes} days={trip.days} hotel={trip.hotel} hotel_price={trip.hotel_price} includeLikes={false} num={index} total_distance={trip.total_distance}/>
+        <ItineraryCard name={currentUsername} location={trip.location} budget={trip.budget} total_price={trip.total_price} likes={trip.num_likes} days={trip.days} hotel={trip.hotel} hotel_price={trip.hotel_price} includeLikes={false} num={index} total_distance={trip.total_distance} photo_reference={trip.photo_reference}/>
       ))}
     </VStack>
     );

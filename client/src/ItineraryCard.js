@@ -82,7 +82,7 @@ function ItineraryCard(props) {
     
     return (
     <div id="itineraryCard">
-        <Card maxW='lg'>
+        <Card w='512px'>
             {props.includeLikes &&
                 <CardHeader>
                 <Flex spacing='4'>
@@ -115,7 +115,7 @@ function ItineraryCard(props) {
             }
             <Image
                 objectFit='cover'
-                src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                src={props.photo_reference}
                 alt='Chakra UI'
                 margin="5"
             />

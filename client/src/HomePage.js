@@ -131,6 +131,7 @@ function HomePage() {
                 total_distance: trip.trip_distance_miles,
                 hotel_price: trip.hotel.price,
                 days: days,
+                photo_reference: trip.itinerary[0].activity.photo_reference,
             })
 
         }
@@ -330,7 +331,7 @@ function HomePage() {
                                     </VStack>
                                     <Image
                                         objectFit='cover'
-                                        src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                                        src={element.activity.photo_reference}
                                         alt='Chakra UI'
                                         maxH={150}
                                         maxW={225}

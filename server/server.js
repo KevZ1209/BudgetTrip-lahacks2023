@@ -58,6 +58,7 @@ const tripSchema = new mongoose.Schema({
     total_distance: Number,
     budget: Number,
     num_likes: Number,
+    photo_reference: String,
     // theme_park: Boolean, // optional filters below
     // museum: String, 
     // national_park: String,
@@ -157,7 +158,7 @@ app.get("/get-user-data", async function(req, res) {
 
 app.post("/create-trip", async function(req, res) {
     // get data from req.body
-    const { username, location, hotel, budget, days, total_price, hotel_price, total_distance } = req.body
+    const { username, location, hotel, budget, days, total_price, hotel_price, total_distance, photo_reference } = req.body
 
     // create new trip
     const newTrip = new Trip({
@@ -170,7 +171,8 @@ app.post("/create-trip", async function(req, res) {
         hotel_price,
         total_distance,
         num_likes: 0,
-        days
+        days,
+        photo_reference,
     })
 
     attraction_string = `Attractions in ${location}`

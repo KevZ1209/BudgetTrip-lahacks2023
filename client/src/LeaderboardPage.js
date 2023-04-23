@@ -78,7 +78,7 @@ function LeaderboardPage() {
     {sortType !== "" && <Button backgroundColor="white" _hover="brand.100" onClick={() => {sortBy(sortType,!ascending)}}>{!ascending && <Icon as={MdOutlineArrowUpward} color="black"/>}{ascending && <Icon as={MdOutlineArrowDownward} color="black" />}</Button>}
     </HStack>
     {trips.map((trip,index) => (
-        <ItineraryCard name={trip.username} tripID={trip._id} location={trip.location} budget={trip.budget} total_price={trip.total_price} likes={trip.num_likes} days={trip.days} hotel={trip.hotel} hotel_price={trip.hotel_price} includeLikes={true} num={index}  total_distance={trip.total_distance} setTrips={setTrips} trips={trips} liked={tripsLiked.includes(trip._id)} currentUsername={currentUsername} fetchLikedTrips={fetchLikedTrips}/>
+        <ItineraryCard name={trip.username} tripID={trip._id} location={trip.location} budget={trip.budget} total_price={trip.total_price} likes={trip.num_likes} days={trip.days} hotel={trip.hotel} hotel_price={trip.hotel_price} includeLikes={true} num={index}  total_distance={trip.total_distance} setTrips={setTrips} trips={trips} liked={tripsLiked.includes(trip._id)} currentUsername={currentUsername} fetchLikedTrips={fetchLikedTrips} photo_reference={trip.photo_reference}/>
       ))}
     </VStack>
     );
