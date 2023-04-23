@@ -676,12 +676,10 @@ const tripListMaker = async (
   possibleItineraries[0].trip_distance_miles = trip_distance;
   possibleItineraries[0].trip_time_hours = trip_time / 60;
 
-  console.log(possibleItineraries[0]);
-
   return possibleItineraries[0];
 };
 
-tripListMaker(dummy_hotels, dummy_attractions, dummy_restaurants, 1000, 3);
+//tripListMaker(dummy_hotels, dummy_attractions, dummy_restaurants, 1000, 3);
 
 //export my functions
 module.exports = { tripListMaker };
