@@ -25,7 +25,7 @@ async function get_hotels(city) {
         new_object.name = raw_data[i].name;
         new_object.rating = raw_data[i].rating;
         new_object.address = raw_data[i].formatted_address;
-        new_object.photo_reference = raw_data[i].photos[0].photo_reference;
+        // new_object.photo_reference = raw_data[i].photos[0].photo_reference;
         new_object.place_id = raw_data[i].place_id;
         new_object.num_ratings = raw_data[i].user_ratings_total;
         
@@ -71,7 +71,7 @@ async function get_restaurants(city) {
         new_object.name = raw_data[i].name;
         new_object.rating = raw_data[i].rating;
         new_object.address = raw_data[i].formatted_address;
-        new_object.photo_reference = raw_data[i].photos[0].photo_reference;
+        // new_object.photo_reference = raw_data[i].photos[0].photo_reference;
         new_object.place_id = raw_data[i].place_id;
         new_object.price = restaurants_price_ladder[raw_data[i].price_level - 1];
         new_object.num_ratings = raw_data[i].user_ratings_total;
@@ -89,10 +89,10 @@ async function get_restaurants(city) {
     return all_restaurants;
 }
 
-async function get_attractions(city) {
+async function get_attractions(city, attraction_type) {
     let google_places_api_endpoint = "https://maps.googleapis.com/maps/api/place/textsearch/json?";
     let google_places_api_key = "AIzaSyDGrrBMexF85xA4aBVabFBFv9DqSl8lutQ";
-    let query = "Attractions" + " in " + city;
+    let query = attraction_type + " in " + city;
 
     let final_endpoint  = google_places_api_endpoint + "query=" + query + "&key=" + google_places_api_key;
 
@@ -106,7 +106,7 @@ async function get_attractions(city) {
         new_object.name = raw_data[i].name;
         new_object.rating = raw_data[i].rating;
         new_object.address = raw_data[i].formatted_address;
-        new_object.photo_reference = raw_data[i].photos[0].photo_reference;
+        // new_object.photo_reference = raw_data[i].photos[0].photo_reference;
         new_object.place_id = raw_data[i].place_id;
         new_object.num_ratings = raw_data[i].user_ratings_total;
         new_object.categories = raw_data[i].types;
