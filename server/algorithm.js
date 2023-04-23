@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const dummy_restaurants = [
   {
     name: "Boulevard",
@@ -492,10 +494,6 @@ const dummy_hotels = [
   },
 ];
 
-const randint = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 const tripListMaker = async (
   hotels,
   restaurants,
@@ -503,6 +501,10 @@ const tripListMaker = async (
   budget,
   num_days
 ) => {
+  const randint = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
   let stars_multiplier = 200;
   let mile_price_constant = 0.65;
   let possibleCombs = 1000;
@@ -577,6 +579,8 @@ const tripListMaker = async (
     return null;
   }
 
+  // console.log(possibleItineraries[0]);
+
   let allActivitesAddresses = [];
   for (let i = 0; i < possibleItineraries[0].itinerary.length; i++) {
     allActivitesAddresses.push(
@@ -589,10 +593,11 @@ const tripListMaker = async (
       possibleItineraries[0].itinerary[i].restaurant_2.address
     );
   }
+  let activitiesString = allActivitesAddresses.join("|");
 
   const params = {
     origins: possibleItineraries[0].hotel.address,
-    destinations: allActivitesAddresses,
+    destinations: activitiesString,
     key: "AIzaSyDGrrBMexF85xA4aBVabFBFv9DqSl8lutQ",
   };
 
@@ -607,14 +612,18 @@ const tripListMaker = async (
 
   const response = await axios.get(google_dm_api_endpoint, { params });
 
-  console.log(possibleItineraries[0]);
+  for (let i = 0; i < possibleItineraries[0].itinerary.length; i++) {
+    possibleItineraries[0].itinerary[i] =
+      response.data.rows[0].elements[i].distance.text;
+  }
+
   return possibleItineraries[0];
 };
 
-//tripListMaker(dummy_hotels, dummy_attractions, dummy_restaurants, 1000, 3);
+tripListMaker(dummy_hotels, dummy_attractions, dummy_restaurants, 1000, 3);
 
 //export my functions
-module.exports = { tripListMaker, randint };
+module.exports = { tripListMaker };
 
 // List of Things to implement
 // 1. Add a way to get the distance between hotel and activity
