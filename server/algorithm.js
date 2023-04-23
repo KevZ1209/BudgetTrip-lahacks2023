@@ -607,7 +607,7 @@ const tripListMaker = async (
   };
 
   // let distance_learning_multiplier = 1000*timesCalled;
-  let stars_multiplier = 200;
+  let stars_multiplier = 250;
   let possibleCombs = 2000;
   let possibleItineraries = [];
 
