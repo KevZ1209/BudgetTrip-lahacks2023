@@ -27,6 +27,7 @@ async function get_hotels(city) {
         new_object.address = raw_data[i].formatted_address;
         new_object.photo_reference = raw_data[i].photos[0].photo_reference;
         new_object.place_id = raw_data[i].place_id;
+        new_object.num_ratings = raw_data[i].user_ratings_total;
         
         only_names.push(raw_data[i].name);
         all_hotels.push(new_object);
@@ -73,6 +74,7 @@ async function get_restaurants(city) {
         new_object.photo_reference = raw_data[i].photos[0].photo_reference;
         new_object.place_id = raw_data[i].place_id;
         new_object.price = restaurants_price_ladder[raw_data[i].price_level - 1];
+        new_object.num_ratings = raw_data[i].user_ratings_total;
         
         // if new_object.price is NaN, continue...
         if (isNaN(new_object.price)) {
@@ -106,6 +108,7 @@ async function get_attractions(city) {
         new_object.address = raw_data[i].formatted_address;
         new_object.photo_reference = raw_data[i].photos[0].photo_reference;
         new_object.place_id = raw_data[i].place_id;
+        new_object.num_ratings = raw_data[i].user_ratings_total;
 
         let attraction_types = raw_data[i].types;
         // console.log(new_object.name);
