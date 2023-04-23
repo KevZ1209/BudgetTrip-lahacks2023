@@ -318,12 +318,12 @@ app.get("/generate-trip", async function(req, res) {
 
     // get attractions from services.js
     const attractions = await services.get_attractions(location)
-
+    
     // get restaurants from services.js
     const restaurants = await services.get_restaurants(location)
 
     // generate a trip using algorithm
-    const trip = algorithm.tripListMaker(hotels,restaurants,attractions,budget,num_days)
+    const trip = await algorithm.tripListMaker(hotels,attractions,restaurants,budget,num_days)
 
     res.send(trip)
 
