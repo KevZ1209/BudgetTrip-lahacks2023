@@ -137,6 +137,15 @@ app.post("/login", async function(req, res) {
 
 })
 
+app.get("/get-user-data", async function(req, res) {
+    // get username from req.body
+    const { username } = req.query
+    // find trips for user
+    const user = await User.findOne({username: username});
+
+    res.send({name: user.name, num_likes: user.num_likes})
+
+})
 
 app.post("/create-trip", async function(req, res) {
     // get data from req.body
@@ -169,7 +178,7 @@ app.post("/create-trip", async function(req, res) {
 
 app.get("/view-trips-for-user", async function(req, res) {
     // get username from req.body
-    const { username } = req.body
+    const { username } = req.query
 
     // find trips for user
     const trips = await Trip.find({username: username})

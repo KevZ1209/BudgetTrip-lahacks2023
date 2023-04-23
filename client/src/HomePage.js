@@ -89,8 +89,8 @@ function HomePage() {
     return (
     <VStack spacing='40px' paddingTop="30px">
         <HStack>
-            <Icon w={10} h={10} as={MdHome}/>
-            <Heading>Home</Heading>
+            <Icon w={12} h={12} as={MdHome}/>
+            <Heading fontSize="5xl">budgetTrip</Heading>
         </HStack>
         <HStack spacing='20px'>
             <Input
@@ -193,7 +193,7 @@ function HomePage() {
                         onClick={() => setTripAdded(!tripAdded)}
                         width={250}
                     >
-                        {tripAdded ? "Remove from profile" : "Add to profile!"}
+                        {tripAdded ? "Remove from profile" : "Add to profile"}
                         </Button>
                 </HStack>
                 <Card key={-1} border='1px' borderColor='white' borderRadius={20} backgroundColor='white'>

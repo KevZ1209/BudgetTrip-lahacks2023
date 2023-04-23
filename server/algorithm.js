@@ -577,6 +577,36 @@ const tripListMaker = async (
     return null;
   }
 
+  let allActivitesAddresses = [];
+  for (let i = 0; i < possibleItineraries[0].itinerary.length; i++) {
+    allActivitesAddresses.push(
+      possibleItineraries[0].itinerary[i].activity.address
+    );
+    allActivitesAddresses.push(
+      possibleItineraries[0].itinerary[i].restaurant_1.address
+    );
+    allActivitesAddresses.push(
+      possibleItineraries[0].itinerary[i].restaurant_2.address
+    );
+  }
+
+  const params = {
+    origins: possibleItineraries[0].hotel.address,
+    destinations: allActivitesAddresses,
+    key: "AIzaSyDGrrBMexF85xA4aBVabFBFv9DqSl8lutQ",
+  };
+
+  //   https://maps.googleapis.com/maps/api/distancematrix/json
+  //   ?destinations=New%20York%20City%2C%20NY
+  //   &origins=Washington%2C%20DC%7CBoston
+  //   &units=imperial
+  //   &key=YOUR_API_KEY
+
+  let google_dm_api_endpoint =
+    "https://maps.googleapis.com/maps/api/distancematrix/json?";
+
+  const response = await axios.get(google_dm_api_endpoint, { params });
+
   console.log(possibleItineraries[0]);
   return possibleItineraries[0];
 };
@@ -585,3 +615,7 @@ const tripListMaker = async (
 
 //export my functions
 module.exports = { tripListMaker, randint };
+
+// List of Things to implement
+// 1. Add a way to get the distance between hotel and activity
+// Add the Musuem, Park, Theme_park, and max_distance from hotel

@@ -28,7 +28,7 @@ function LoginPage() {
                 setLoggingIn(true);
                 toast({
                     title: 'Account created!',
-                    description: "We've created your account for you. Welcome to budgeTRIP!",
+                    description: "We've created your account for you. Welcome to budgetTrip!",
                     status: 'success',
                     duration: 8000,
                     isClosable: true,
@@ -64,7 +64,7 @@ function LoginPage() {
             if(result && result.data) {
                 toast({
                     title: 'Login successful!',
-                    description: "Feel free to explore budgeTRIP",
+                    description: "Feel free to explore budgetTrip",
                     status: 'success',
                     duration: 8000,
                     isClosable: true,
