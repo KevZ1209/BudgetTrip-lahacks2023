@@ -638,6 +638,13 @@ const tripListMaker = async (
       randomized_transportation_price =
         randomized_transportation_price - (randomized_transportation_price % 5);
 
+      if (!restaurantsCopy[restaurantIndex1].hasOwnProperty("price")) {
+        restaurantsCopy[restaurantIndex1].price = 25;
+      }
+      if (!restaurantsCopy[restaurantIndex2].hasOwnProperty("price")) {
+        restaurantsCopy[restaurantIndex2].price = 15;
+      }
+
       let daily_price =
         randomized_attraction_price +
         restaurantsCopy[restaurantIndex1].price +
