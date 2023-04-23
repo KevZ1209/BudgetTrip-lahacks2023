@@ -109,6 +109,7 @@ async function get_attractions(city) {
         new_object.photo_reference = raw_data[i].photos[0].photo_reference;
         new_object.place_id = raw_data[i].place_id;
         new_object.num_ratings = raw_data[i].user_ratings_total;
+        new_object.categories = raw_data[i].types;
 
         let attraction_types = raw_data[i].types;
         // console.log(new_object.name);
