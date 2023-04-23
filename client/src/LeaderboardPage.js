@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from 'react';
 import ItineraryCard from "./ItineraryCard";
-import { MdAttractions, MdOutlineFastfood } from 'react-icons/md';
+import { MdOutlineArrowUpward, MdOutlineArrowDownward } from 'react-icons/md';
 import "./LeaderboardPage.css";
-import { Card, CardHeader, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, Flex, Avatar, Box, IconButton, Link, UnorderedList, ListItem, ListIcon } from '@chakra-ui/react';
-import { VStack } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, Flex, Avatar, Box, IconButton, Link, UnorderedList, ListItem, ListIcon, Select } from '@chakra-ui/react';
+import { HStack, VStack } from "@chakra-ui/react";
 import { Icon, CheckIcon, CalendarIcon, HamburgerIcon } from '@chakra-ui/icons'
 
 function LeaderboardPage() {
-    const userList = [
+    const [userList, setUserList] = useState([
         {
             username: "Marcus Cheng",
             location: "Cleveland",
@@ -59,24 +59,35 @@ function LeaderboardPage() {
             },
             ]
         },
-    ];
-    const [itinerary, setItinerary] = useState([false, true]);
+    ]);
+    const [sortType,setSortType] = useState("");
+    const [ascending,setAscending] = useState(false);
     
-    function changeItinerary(value, index) {
-        let newArray = [];
-        for(let i = 0; i < userList.length; i++) {
-          if(i === index) {
-            newArray.push(value);
-          } else {
-            newArray.push(itinerary[i]);
-          }
+    function sortBy(prop, ascending) {
+        console.log(prop);
+        console.log(ascending);
+        let sorted;
+        setSortType(prop);
+        setAscending(ascending);
+        if(ascending) {
+            sorted = [...userList].sort((a,b) => a[prop] - b[prop]);
+        } else {
+            sorted = [...userList].sort((a,b) => b[prop] - a[prop]);
         }
-        setItinerary(newArray);
+        setUserList(sorted);
     }
 
     return (
     <div id="leaderboard">
     <VStack spacing={10}>
+    <HStack>
+    <Select placeholder='Sort by' backgroundColor="white" textColor="black" onClick={(e) => sortBy(e.target.value, ascending)}>
+        <option value='num_likes'>Likes</option>
+        <option value='total_price'>Money</option>
+        <option value='total_distance'>Distance</option>
+    </Select>
+    {sortType !== "" && <Button backgroundColor="white" _hover="brand.100" onClick={() => {sortBy(sortType,!ascending)}}>{!ascending && <Icon as={MdOutlineArrowUpward} color="black"/>}{ascending && <Icon as={MdOutlineArrowDownward} color="black" />}</Button>}
+    </HStack>
     {userList.map((user,index) => (
         <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} includeLikes={true} num={index}  total_distance={user.total_distance}/>
       ))}

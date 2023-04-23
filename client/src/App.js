@@ -72,7 +72,7 @@ function App() {
             </BreadcrumbItem>
           </Breadcrumb>
         )} */}
-        {currentUsername && (
+        {!currentUsername && (
           <div className="navBar">
             <NavLink
               to="/"
@@ -105,7 +105,7 @@ function App() {
           </div>
         )}
           <Routes>
-            <Route exact path="/" element={currentUsername ? <HomePage/> : <LoginPage/>}/>
+            <Route exact path="/" element={!currentUsername ? <HomePage/> : <LoginPage/>}/>
             <Route path="/profile" element={<ProfilePage/>} />
             <Route path="/leaderboard" element={<LeaderboardPage/>} />
             <Route path="/login" element={<LoginPage/>} />
