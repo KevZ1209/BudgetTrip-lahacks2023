@@ -623,7 +623,7 @@ const tripListMaker = async (
 tripListMaker(dummy_hotels, dummy_attractions, dummy_restaurants, 1000, 3);
 
 //export my functions
-module.exports = { tripListMaker, randint };
+module.exports = { tripListMaker };
 
 // List of Things to implement
 // 1. Add a way to get the distance between hotel and activity
