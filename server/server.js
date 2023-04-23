@@ -191,7 +191,7 @@ app.get("/view-trips-for-user", async function(req, res) {
 app.get("/view-all-trips", async function(req, res) {
     // find all trips
     const trips = await Trip.find({})
-
+    console.log(trips)
     res.send(trips)
 })
 
@@ -220,7 +220,7 @@ app.post("/like-trip", async function(req, res) {
 
     // find trip and update num_likes
     const trip = await Trip.findOneAndUpdate({_id: tripID}, {$inc: {num_likes: 1}}, {new: true})
-
+    console.log("trip found", trip)
     if (trip == null) {
         // no trip with that trip ID
         res.send(null)
