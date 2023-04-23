@@ -496,8 +496,8 @@ const dummy_hotels = [
 
 const tripListMaker = async (
   hotels,
-  restaurants,
   attractions,
+  restaurants,
   budget,
   num_days
 ) => {
@@ -507,7 +507,7 @@ const tripListMaker = async (
 
   let stars_multiplier = 200;
   let mile_price_constant = 0.65;
-  let possibleCombs = 1000;
+  let possibleCombs = 2000;
   let possibleItineraries = [];
 
   for (let i = 0; i < possibleCombs; i++) {
@@ -518,38 +518,42 @@ const tripListMaker = async (
     let total_price = 0;
     let total_likeability = 0;
     for (let j = 0; j < num_days; j++) {
-      let attractionIndex = randint(0, attractions.length - 1);
-      let restaurantIndex1 = randint(0, restaurants.length - 1);
-      let restaurantIndex2 = randint(0, restaurants.length - 1);
+      let attractionIndex = randint(0, attractionsCopy.length - 1);
+      let restaurantIndex1 = randint(0, restaurantsCopy.length - 1);
+      let restaurantIndex2 = randint(0, restaurantsCopy.length - 1);
       //duplication fixer
       if (restaurantIndex2 == restaurantIndex1) {
-        restaurantIndex2 = randint(0, restaurants.length - 1);
+        restaurantIndex2 = randint(0, restaurantsCopy.length - 1);
       }
       if (restaurantIndex2 == restaurantIndex1) {
-        restaurantIndex2 = randint(0, restaurants.length - 1);
+        restaurantIndex2 = randint(0, restaurantsCopy.length - 1);
       }
 
+      let randomized_attraction_price = randint(10, 25);
+      randomized_attraction_price =
+        randomized_attraction_price - (randomized_attraction_price % 5);
+
       let daily_price =
-        attractions[attractionIndex].price +
-        restaurants[restaurantIndex1].price +
-        restaurants[restaurantIndex2].price;
+        randomized_attraction_price +
+        restaurantsCopy[restaurantIndex1].price +
+        restaurantsCopy[restaurantIndex2].price;
 
       total_price += daily_price;
 
       let likeability =
-        attractions[attractionIndex].rating * 2 * stars_multiplier +
-        restaurants[restaurantIndex1].rating * stars_multiplier +
-        restaurants[restaurantIndex2].rating * stars_multiplier +
-        attractions[attractionIndex].num_ratings * 2 +
-        restaurants[restaurantIndex1].num_ratings +
-        restaurants[restaurantIndex2].num_ratings;
+        attractionsCopy[attractionIndex].rating * 2 * stars_multiplier +
+        restaurantsCopy[restaurantIndex1].rating * stars_multiplier +
+        restaurantsCopy[restaurantIndex2].rating * stars_multiplier +
+        attractionsCopy[attractionIndex].num_ratings * 2 +
+        restaurantsCopy[restaurantIndex1].num_ratings +
+        restaurantsCopy[restaurantIndex2].num_ratings;
 
       total_likeability += likeability;
 
       currentItinerary.push({
-        activity: attractions[attractionIndex],
-        restaurant_1: restaurants[restaurantIndex1],
-        restaurant_2: restaurants[restaurantIndex2],
+        activity: attractionsCopy[attractionIndex],
+        restaurant_1: restaurantsCopy[restaurantIndex1],
+        restaurant_2: restaurantsCopy[restaurantIndex2],
         daily_price: daily_price,
         likeability: likeability,
       });
@@ -612,10 +616,67 @@ const tripListMaker = async (
 
   const response = await axios.get(google_dm_api_endpoint, { params });
 
+  let trip_distance = 0;
+  let trip_time = 0;
   for (let i = 0; i < possibleItineraries[0].itinerary.length; i++) {
-    possibleItineraries[0].itinerary[i] =
-      response.data.rows[0].elements[i].distance.text;
+    attractionDistanceString =
+      response.data.rows[0].elements[3 * i].distance.text;
+    restaurant_1_DistanceString =
+      response.data.rows[0].elements[3 * i + 1].distance.text;
+    restaurant_2_DistanceString =
+      response.data.rows[0].elements[3 * i + 2].distance.text;
+
+    attractionDistanceValue = parseFloat(
+      attractionDistanceString.split(" ")[0]
+    );
+    restaurant_1_DistanceValue = parseFloat(
+      restaurant_1_DistanceString.split(" ")[0]
+    );
+    restaurant_2_DistanceValue = parseFloat(
+      restaurant_2_DistanceString.split(" ")[0]
+    );
+
+    totalDailyDistanceKM =
+      attractionDistanceValue * 2 +
+      restaurant_1_DistanceValue * 2 +
+      restaurant_2_DistanceValue * 2;
+
+    total_daily_distance = totalDailyDistanceKM * 0.621371;
+    trip_distance += total_daily_distance;
+    possibleItineraries[0].itinerary[i].daily_distance_miles =
+      total_daily_distance;
+
+    attractionDurationString =
+      response.data.rows[0].elements[3 * i].duration.text;
+    restaurant_1_DurationString =
+      response.data.rows[0].elements[3 * i + 1].duration.text;
+    restaurant_2_DurationString =
+      response.data.rows[0].elements[3 * i + 2].duration.text;
+
+    attractionDurationValue = parseFloat(
+      attractionDurationString.split(" ")[0]
+    );
+    restaurant_1_DurationValue = parseFloat(
+      restaurant_1_DurationString.split(" ")[0]
+    );
+    restaurant_2_DurationValue = parseFloat(
+      restaurant_2_DurationString.split(" ")[0]
+    );
+
+    totalDailyDurationMin =
+      attractionDurationValue * 2 +
+      restaurant_1_DurationValue * 2 +
+      restaurant_2_DurationValue * 2;
+
+    trip_time += totalDailyDurationMin;
+
+    possibleItineraries[0].itinerary[i].daily_duration_minutes =
+      totalDailyDurationMin;
   }
+  possibleItineraries[0].trip_distance_miles = trip_distance;
+  possibleItineraries[0].trip_time_hours = trip_time / 60;
+
+  console.log(possibleItineraries[0]);
 
   return possibleItineraries[0];
 };
