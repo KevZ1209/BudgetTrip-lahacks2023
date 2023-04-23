@@ -89,8 +89,8 @@ function HomePage() {
     return (
     <VStack spacing='40px' paddingTop="30px">
         <HStack>
-            <Icon w={10} h={10} as={MdHome}/>
-            <Heading>Home</Heading>
+            <Icon w={12} h={12} as={MdHome}/>
+            <Heading fontSize="5xl">budgetTrip</Heading>
         </HStack>
         <HStack spacing='20px'>
             <Input
