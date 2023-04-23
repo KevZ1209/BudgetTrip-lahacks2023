@@ -185,7 +185,7 @@ function HomePage() {
                         </Checkbox>
                         <Divider />
                         <Text>Max distance from hotel: {maxDistance} miles</Text>
-                        <Slider aria-label='slider-ex-2' colorScheme='brand' defaultValue={15} min={1} max={100} step={1} onChange={(val) => setMaxDistance(val)}>
+                        <Slider aria-label='slider-ex-2' colorScheme='brand' defaultValue={50} min={5} max={250} step={1} onChange={(val) => setMaxDistance(val)}>
                             <SliderTrack>
                                 <SliderFilledTrack />
                             </SliderTrack>
@@ -215,17 +215,17 @@ function HomePage() {
                     <Button
                         leftIcon={<StarIcon />}
                         color='white'
-                        backgroundColor={tripAdded ? 'red.500' : 'brand.200'}
+                        backgroundColor={tripAdded ? "brand.400" : "brand.200"}
                         _hover={{ bg: "gray.400", color: "white" }}
                         _active={{ bg: "gray.400"}}
                         // borderColor='brand.400'
                         // border={tripAdded ? "0px" : "1px"}
                         variant='solid'
                         fontSize='xl'
-                        onClick={() => setTripAdded(!tripAdded)}
+                        onClick={() => setTripAdded(true)}
                         width={250}
                     >
-                        {tripAdded ? "Remove from profile" : "Add to profile"}
+                        {tripAdded ? "Added!" : "Add to profile"}
                         </Button>
                 </HStack>
                 <Card key={-1} border='1px' borderColor='white' borderRadius={20} backgroundColor='white'>
