@@ -148,25 +148,25 @@ app.get("/get-user-data", async function(req, res) {
     const { username } = req.query
     // find trips for user
     const user = await User.findOne({username: username});
-
-    res.send({name: user.name, num_likes: user.num_likes})
+    console.log("user***", user)
+    res.send({name: user.name, num_likes: user.num_likes, trips_liked: user.trips_liked})
 
 })
 
 app.post("/create-trip", async function(req, res) {
     // get data from req.body
-    const { username, location, budget, days,
-         national_park, museum, theme_park, max_distance_from_hotel } = req.body
-
+    const { username, location, hotel, budget, days, total_price } = req.body
 
     // create new trip
     const newTrip = new Trip({
         username,
         location,
+        hotel,
+        total_price,
         budget,
+        total_price: 0,
         num_likes: 0,
-        days,
-        theme_park
+        days
     })
 
     attraction_string = `Attractions in ${location}`
@@ -188,6 +188,7 @@ app.get("/view-trips-for-user", async function(req, res) {
 
     // find trips for user
     const trips = await Trip.find({username: username})
+    console.log(await Trip.find({}))
 
     res.send(trips)
 
@@ -197,7 +198,7 @@ app.get("/view-trips-for-user", async function(req, res) {
 app.get("/view-all-trips", async function(req, res) {
     // find all trips
     const trips = await Trip.find({})
-
+    console.log(trips)
     res.send(trips)
 })
 
@@ -293,7 +294,7 @@ app.get("/test-attractions/:location", async function(req, res) {
     const { location } = req.params
 
     // get attractions from services.js
-    const attractions = await services.get_attractions(location)
+    const attractions = await services.get_attractions(location, "Attractions")
 
     res.send(attractions)
 })
@@ -313,28 +314,75 @@ app.get("/generate-trip", async function(req, res) {
     // get location from req.params
 
     
-    let { location, budget, num_days } = req.body
+    let { location, budget, num_days, max_travel_distance_per_day, amusement_park, aquarium, zoo, museum, park, shopping_mall, store } = req.body
 
-    // cast budget and num_days to ints
+    // cast to ints
     budget = parseInt(budget)
     num_days = parseInt(num_days)
+    max_travel_distance_per_day = parseInt(max_travel_distance_per_day)
 
     // get hotels from services.js
     const hotels = await services.get_hotels(location)
     // console.log(hotels)
 
     // get attractions from services.js
-    const attractions = await services.get_attractions(location)
-    // console.log(attractions)
+    let amusement_parks = []
+    let museums = []
+    let parks = []
+    let shopping_malls = []
+    let stores = []
+    let zoos = []
+    let aquariums = []
     
+    let general_attractions = await services.get_attractions(location, "attractions")
+    
+    if (amusement_park === 'true') {
+        amusement_parks = await services.get_attractions(location, "amusement parks")
+    }
+    if (museum === 'true') {
+        museums = await services.get_attractions(location, "museums")
+    }  
+    if (park === 'true') {
+        parks = await services.get_attractions(location, "parks")
+    }
+    if (shopping_mall === 'true') {
+        shopping_malls = await services.get_attractions(location, "shopping malls")
+    }
+    if (store === 'true') {
+        stores = await services.get_attractions(location, "stores")
+    }
+    if (zoo === 'true') {
+        zoos = await services.get_attractions(location, "zoos")
+    }
+    if (aquarium === 'true') {
+        aquariums = await services.get_attractions(location, "aquariums")
+    }
+
+    // combine all attraction arrays into a single array using spread operator
+    let attractions = [...general_attractions, ...amusement_parks, ...museums, ...parks, ...shopping_malls, ...stores, ...zoos, ...aquariums]
+    
+    // remove duplicate attractions if they have same name
+    let unique_attractions = []
+    for (let i = 0; i < attractions.length; i++) {
+        if (unique_attractions.findIndex(x => x.name === attractions[i].name) === -1) {
+            unique_attractions.push(attractions[i])
+        }
+    }
+
+    // console.log(unique_attractions)
+
     // get restaurants from services.js
     const restaurants = await services.get_restaurants(location)
     // console.log(restaurants)
 
-    // generate a trip using algorithm
-    const trip = await algorithm.tripListMaker(hotels,attractions,restaurants,budget,num_days)
+    // console.log(attractions)
 
-    res.send(trip)
+    res.send(unique_attractions)
+    
+    // generate a trip using algorithm
+    // const trip = await algorithm.tripListMaker(hotels,attractions,restaurants,budget,num_days, max_travel_distance_per_day, amusement_park, museum, park, shopping_mall, store, zoo, aquarium, 1)
+
+    // res.send(trip)
 
 })
 
