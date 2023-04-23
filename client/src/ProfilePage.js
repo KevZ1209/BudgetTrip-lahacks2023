@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { VStack, Card, Heading, Table, Tr, Tbody, Td, HStack } from '@chakra-ui/react'
 import "./ProfilePage.css";
 import ItineraryCard from "./ItineraryCard";
 import { Icon } from '@chakra-ui/icons'
 import { MdPerson } from 'react-icons/md'
+import UserContext from "./UserContext";
+import axios from "axios";
 
 function ProfilePage() {
+    const { currentUsername, setCurrentUsername } = useContext(UserContext);
+    const [name, setName] = useState();
+
     const user = {
         name: "Marcus Cheng",
         username: "marcuscheng123",
@@ -64,6 +69,28 @@ function ProfilePage() {
             ]
         },
     ];
+
+
+
+    // useEffect(async () => {
+    //     const fetch = async () => {
+    //         console.log("*****", currentUsername)
+    //         if(currentUsername !== null){
+    //             console.log(currentUsername)
+    //             const result = await axios.get("http://localhost:8000/get-name", {
+    //                 username: currentUsername
+    //             })
+    //             console.log(result)
+    //             if(result){
+    //                 setName(result.data)
+    //             }
+    //         }
+    //     }
+
+    //     fetch().catch(console.error)
+        
+    // },[currentUsername])
+
     return (
     <VStack spacing={10} paddingTop="30px">
         <HStack>
