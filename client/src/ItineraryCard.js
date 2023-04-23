@@ -26,7 +26,7 @@ function ItineraryCard(props) {
                 username: props.currentUsername,
             })
 
-            console.log(result)
+            await props.fetchLikedTrips();
     
             if(result && result.data) {
                 console.log("liked!")
@@ -53,6 +53,8 @@ function ItineraryCard(props) {
                 tripID: props.tripID,
                 username: props.currentUsername,
             })
+            
+            await props.fetchLikedTrips();
 
             if(result && result.data) {
                 console.log("unliked!")
@@ -67,7 +69,7 @@ function ItineraryCard(props) {
     }
 
     function changeLike() {
-        if(liked) {
+        if(props.liked) {
             unlikeTrip();
         } else {
             likeTrip();
@@ -90,7 +92,7 @@ function ItineraryCard(props) {
                     <Text>{props.location}</Text>
                     </Box>
                 </Flex>
-                <Button width="125px" variant='ghost' backgroundColor={liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {changeLike()}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
+                <Button width="125px" variant='ghost' backgroundColor={props.liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {changeLike()}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
                 Like ({props.likes})
                 </Button>                
                 </Flex>

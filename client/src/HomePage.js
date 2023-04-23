@@ -66,7 +66,8 @@ function HomePage() {
             params: {
                 location: location,
                 budget: budget,
-                num_days: numberOfDays
+                num_days: numberOfDays,
+                distance_from_hotel: maxDistance,
             }
         })
 
@@ -105,7 +106,6 @@ function HomePage() {
                 total_price: trip.total_price,
                 days: days,
             })
-           
 
         }
         catch {

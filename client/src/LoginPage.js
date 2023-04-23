@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Heading, VStack, Input, Button, useToast, Text } from '@chakra-ui/react'
+import { Heading, VStack, Input, Button, useToast, Text, Image } from '@chakra-ui/react'
 import UserContext from "./UserContext";
 import "./LoginPage.css";
 import axios from "axios";
@@ -95,6 +95,12 @@ function LoginPage() {
 
     return (
         <VStack spacing="20px" paddingTop="30px">
+            {!currentUsername && (
+                <>
+                    <Image src='/logo.png' h="120px" w="120px"/>
+                    <Heading fontSize="6xl">budgetTRIP</Heading>
+                </>
+            )}
             <Heading>Login</Heading>
             {currentUsername ? (
                 <>
