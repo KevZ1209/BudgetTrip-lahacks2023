@@ -94,9 +94,12 @@ function HomePage() {
         })
         console.log(result)
     
-        if(result){
+        if(result && result.data !== ""){
             console.log(result)
             setTrip(result.data)
+        }
+        else {
+            setTrip(10)
         }
 
         setIsGenerating(false)
@@ -254,7 +257,7 @@ function HomePage() {
         >
             Generate my trip!
         </Button>
-        {trip != null && !isGenerating && (
+        {trip !== null && trip !== 10 && !isGenerating && (
             <VStack border='1px' borderColor='white' borderRadius={10} align='strech' w={900}  padding="20px" backgroundColor="gray.200">
                 <HStack spacing='auto'>
                     <Heading fontSize='3xl' color="black">New Trip!</Heading>
@@ -337,6 +340,11 @@ function HomePage() {
                         </Card>
                     )
                 })}
+            </VStack>
+        )}
+        {trip !== null && trip === 10 && (
+            <VStack>
+                <Text fontSize="xl">No itinerary found. Change the parameters and try again.</Text>
             </VStack>
         )}
     </VStack>
