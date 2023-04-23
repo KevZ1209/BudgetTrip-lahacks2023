@@ -1,11 +1,10 @@
 import React from "react";
 import { useState } from 'react';
 import ItineraryCard from "./ItineraryCard";
-import { MdAttractions, MdOutlineFastfood } from 'react-icons/md';
 import "./LeaderboardPage.css";
-import { Card, CardHeader, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, Flex, Avatar, Box, IconButton, Link, UnorderedList, ListItem, ListIcon } from '@chakra-ui/react';
-import { VStack } from "@chakra-ui/react";
-import { Icon, CheckIcon, CalendarIcon, HamburgerIcon } from '@chakra-ui/icons'
+import {VStack, Heading, HStack } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/icons'
+import { MdOutlineFeed } from 'react-icons/md'
 
 function LeaderboardPage() {
     const userList = [
@@ -76,7 +75,10 @@ function LeaderboardPage() {
 
     return (
     <VStack spacing={10}  paddingTop="30px">
-    <Heading>Feed</Heading>
+    <HStack>
+        <Icon w={10} h={10} as={MdOutlineFeed}/>
+        <Heading>Feed</Heading>
+    </HStack>
     {userList.map((user,index) => (
         <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} includeLikes={true} num={index}  total_distance={user.total_distance}/>
       ))}
