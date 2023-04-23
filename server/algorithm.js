@@ -924,23 +924,23 @@ const tripListMaker = async (
   return possibleItineraries[0];
 };
 
-tripListMaker(
-  dummy_hotels,
-  dummy_attractions,
-  dummy_restaurants,
-  1000,
-  3,
-  17,
-  false,
-  true,
-  false,
-  false,
-  false,
-  true,
-  false,
-  false,
-  1
-);
+// tripListMaker(
+//   dummy_hotels,
+//   dummy_attractions,
+//   dummy_restaurants,
+//   1000,
+//   3,
+//   17,
+//   false,
+//   true,
+//   false,
+//   false,
+//   false,
+//   true,
+//   false,
+//   false,
+//   1
+// );
 
 // hotels,
 //   attractions,
