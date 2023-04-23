@@ -311,16 +311,25 @@ app.get("/test-restaurants/:location", async function(req, res) {
 // THIS FUNCTION IS NOT FINISHED!!!
 app.get("/generate-trip", async function(req, res) {
     // get location from req.params
-    const { location, budget, num_days } = req.body
+
+    
+    let { location, budget, num_days } = req.body
+
+    // cast budget and num_days to ints
+    budget = parseInt(budget)
+    num_days = parseInt(num_days)
 
     // get hotels from services.js
     const hotels = await services.get_hotels(location)
+    // console.log(hotels)
 
     // get attractions from services.js
     const attractions = await services.get_attractions(location)
+    // console.log(attractions)
     
     // get restaurants from services.js
     const restaurants = await services.get_restaurants(location)
+    // console.log(restaurants)
 
     // generate a trip using algorithm
     const trip = await algorithm.tripListMaker(hotels,attractions,restaurants,budget,num_days)
