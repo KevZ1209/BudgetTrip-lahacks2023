@@ -8,7 +8,7 @@ import UserContext from "./UserContext";
 import axios from "axios";
 
 function ProfilePage() {
-    const { currentUsername, setCurrentUsername } = useContext(UserContext);
+    const { currentUsername } = useContext(UserContext);
     const [name, setName] = useState("...");
     const [numLikes, setNumLikes] = useState("...");
     const [trips, setTrips] = useState([])

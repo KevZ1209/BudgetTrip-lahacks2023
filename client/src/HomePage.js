@@ -28,6 +28,7 @@ import {
 import { Icon, StarIcon } from '@chakra-ui/icons'
 import { MdOutlineFastfood, MdAttractions, MdHome } from 'react-icons/md'
 import "./HomePage.css";
+import axios from "axios";
 
 function HomePage() {
     const [location, setLocation] = useState("")
@@ -53,35 +54,50 @@ function HomePage() {
     const generateTrip = async () => {
         setIsGenerating(true)
         console.log(location, budget, numberOfDays, amusementPark, museum, nationalPark, maxDistance, isGenerating)
+        
         // CALL API TO GET TRIP
-        await timeout(2000); //for 1 sec delay
-
-        setTrip({
-            userID: "123",
-            location: location,
-            hotel: "Cardboard Box",
-            total_price: 999.98,
-            budget: budget,
-            num_likes: 0,
-
-            // list of days in the trip
-            days: [
-                {
-                    attraction: "Eiffel Tower",
-                    food1: "La brasserie du 7eme",
-                    food2: "McDonalds",
-                    daily_budget: "40",
-                    miles_traveled: "10"
-                },
-                {
-                    attraction: "Notre Dame",
-                    food1: "Chicken Kebab",
-                    food2: "Burger King",
-                    daily_budget: "100",
-                    miles_traveled: "25"
-                },
-            ]
+        const result = await axios.get("http://localhost:8000/generate-trip", {
+            params: {
+                location: location,
+                budget: budget,
+                num_days: numberOfDays
+            }
         })
+
+        console.log(result)
+    
+        if(result){
+            console.log(result)
+            setTrip(result.data)
+        }
+
+        // setTrip({
+        //     userID: "123",
+        //     location: location,
+        //     hotel: "Cardboard Box",
+        //     total_price: 999.98,
+        //     budget: budget,
+        //     num_likes: 0,
+
+        //     // list of days in the trip
+        //     days: [
+        //         {
+        //             attraction: "Eiffel Tower",
+        //             food1: "La brasserie du 7eme",
+        //             food2: "McDonalds",
+        //             daily_budget: "40",
+        //             miles_traveled: "10"
+        //         },
+        //         {
+        //             attraction: "Notre Dame",
+        //             food1: "Chicken Kebab",
+        //             food2: "Burger King",
+        //             daily_budget: "100",
+        //             miles_traveled: "25"
+        //         },
+        //     ]
+        // })
+
         setIsGenerating(false)
         
     }
@@ -170,7 +186,7 @@ function HomePage() {
             variant='solid'
             w={300}
             onClick={generateTrip}
-            // isDisabled={location==="" | budget === null | numberOfDays === null}
+            isDisabled={location==="" | budget === null | numberOfDays === null}
             isLoading={isGenerating}
             spinner={<Spinner size="md"/>}
         >
@@ -210,7 +226,7 @@ function HomePage() {
                             <CardBody>
                                 <HStack spacing='auto'>
                                     <VStack align='stretch'>
-                                        <Text fontSize='xl' fontWeight='bold' color='black'>Day {index}</Text>
+                                        <Text fontSize='xl' fontWeight='bold' color='black'>Day {index+1}</Text>
                                         <HStack>
                                             <Icon as={MdAttractions} color="black"/>MdAttractions
                                             <Text color="black">Attraction: {element.attraction}</Text>
@@ -226,6 +242,7 @@ function HomePage() {
                                         <HStack spacing='30px'>
                                             <Text color='black' fontWeight='bold'>Price: ${element.daily_budget}</Text>
                                             <Text color='black' fontWeight='bold'>Distance: {element.miles_traveled} miles</Text>
+                                            <Text color='black' fontWeight='bold'>Travel time: {element.travel_time} hours</Text>
                                         </HStack>
                                     </VStack>
                                     <Image

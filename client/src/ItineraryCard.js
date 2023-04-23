@@ -1,14 +1,82 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from 'react';
 import { Card, CardHeader, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, Flex, Avatar, Box, IconButton, Link, UnorderedList, ListItem, ListIcon, VStack, HStack } from '@chakra-ui/react';
 import { Icon, CheckIcon, } from '@chakra-ui/icons';
 import { MdAttractions, MdOutlineFastfood, MdOutlineThumbUpOffAlt } from 'react-icons/md';
 import "./ProfilePage.css";
+import axios from "axios";
 
 function ItineraryCard(props) {
 
     const [itinerary, setItinerary] = useState(false);
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(props.liked);
+
+
+    const likeTrip = async () => {
+        props.setTrips([...props.trips].map(e => {
+            if(e._id === props.tripID) {
+                e.num_likes += 1;
+            }
+            return e;
+        }))
+        setLiked(true)
+        try{
+            const result = await axios.post("http://localhost:8000/like-trip", {
+                tripID: props.tripID,
+                username: props.currentUsername,
+            })
+
+            console.log(result)
+    
+            if(result && result.data) {
+                console.log("liked!")
+            }
+            else {
+                console.log("error liking")
+            }
+        }
+        catch {
+            console.log("error loggin in :(")
+        }
+    }
+
+    const unlikeTrip = async () => {
+        props.setTrips([...props.trips].map(e => {
+            if(e._id === props.tripID) {
+                e.num_likes -= 1;
+            }
+            return e;
+        }))
+        setLiked(false)
+        try{
+            const result = await axios.post("http://localhost:8000/unlike-trip", {
+                tripID: props.tripID,
+                username: props.currentUsername,
+            })
+
+            if(result && result.data) {
+                console.log("unliked!")
+            }
+            else {
+                console.log("error liking")
+            }
+        }
+        catch {
+            console.log("error loggin in :(")
+        }
+    }
+
+    function changeLike() {
+        if(liked) {
+            unlikeTrip();
+        } else {
+            likeTrip();
+        }
+    }
+
+    // useEffect(() => {
+    //     setLiked(props.tripsLiked.includes(props.tripID))
+    // }, [props])
     
     return (
     <div id="itineraryCard">
@@ -22,7 +90,7 @@ function ItineraryCard(props) {
                     <Text>{props.location}</Text>
                     </Box>
                 </Flex>
-                <Button width="125px" variant='ghost' backgroundColor={liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {setLiked(!liked)}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
+                <Button width="125px" variant='ghost' backgroundColor={liked ? 'brand.200' : 'white' } _hover='brand.200' onClick={() => {changeLike()}} leftIcon={<Icon as={MdOutlineThumbUpOffAlt} />}>
                 Like ({props.likes})
                 </Button>                
                 </Flex>
