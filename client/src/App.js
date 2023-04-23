@@ -74,11 +74,11 @@ function App() {
             </BreadcrumbItem>
           </Breadcrumb>
         )} */}
-        {!currentUsername && (
+        {currentUsername && (
           <CustomNavBar />
         )}
           <Routes>
-            <Route exact path="/" element={!currentUsername ? <HomePage/> : <LoginPage/>}/>
+            <Route exact path="/" element={currentUsername ? <HomePage/> : <LoginPage/>}/>
             <Route path="/profile" element={<ProfilePage/>} />
             <Route path="/feed" element={<LeaderboardPage/>} />
             <Route path="/login" element={<LoginPage/>} />

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {
     Heading,
     Input,
@@ -29,8 +29,10 @@ import { Icon, StarIcon } from '@chakra-ui/icons'
 import { MdOutlineFastfood, MdAttractions, MdHome } from 'react-icons/md'
 import "./HomePage.css";
 import axios from "axios";
+import UserContext from "./UserContext";
 
 function HomePage() {
+    const { currentUsername } = useContext(UserContext);
     const [location, setLocation] = useState("")
     const [budget, setBudget] = useState()
     const [numberOfDays, setNumberOfDays] = useState()
@@ -75,35 +77,40 @@ function HomePage() {
             setTrip(result.data)
         }
 
-        // setTrip({
-        //     userID: "123",
-        //     location: location,
-        //     hotel: "Cardboard Box",
-        //     total_price: 999.98,
-        //     budget: budget,
-        //     num_likes: 0,
-
-        //     // list of days in the trip
-        //     days: [
-        //         {
-        //             attraction: "Eiffel Tower",
-        //             food1: "La brasserie du 7eme",
-        //             food2: "McDonalds",
-        //             daily_budget: "40",
-        //             miles_traveled: "10"
-        //         },
-        //         {
-        //             attraction: "Notre Dame",
-        //             food1: "Chicken Kebab",
-        //             food2: "Burger King",
-        //             daily_budget: "100",
-        //             miles_traveled: "25"
-        //         },
-        //     ]
-        // })
-
         setIsGenerating(false)
         
+    }
+
+    const addTrip = async () => {
+        setTripAdded(true)
+        try {
+            const days = trip.itinerary.map(element => {
+                return (
+                    {
+                        attraction: element.activity.name,
+                        food1: element.restaurant_1.name,
+                        food2: element.restaurant_2.name,
+                        daily_price: element.daily_price,
+                        miles_traveled: element.daily_distance_miles
+                    }
+                )
+            })
+            const result = await axios.post("http://localhost:8000/create-trip", {
+                // username, location, hotel, budget, days, total_price
+
+                username: currentUsername,
+                location: location,
+                hotel: trip.hotel.name,
+                budget: budget,
+                total_price: trip.total_price,
+                days: days,
+            })
+           
+
+        }
+        catch {
+            console.log("error signing up :(")
+        }
     }
 
     return (
@@ -238,7 +245,7 @@ function HomePage() {
                         // border={tripAdded ? "0px" : "1px"}
                         variant='solid'
                         fontSize='xl'
-                        onClick={() => setTripAdded(!tripAdded)}
+                        onClick={() => addTrip()}
                         width={250}
                     >
                         {tripAdded ? "Remove from profile" : "Add to profile"}
@@ -247,34 +254,52 @@ function HomePage() {
                 <Card key={-1} border='1px' borderColor='white' borderRadius={20} backgroundColor='white'>
                     <CardBody>
                         <HStack spacing='auto'>
-                            <Text fontSize='xl' color="black" fontWeight="bold">Total Price: ${trip.total_price}</Text>
-                            <Text fontSize='xl' color="black" fontWeight="bold">Hotel: {trip.hotel}</Text>
+                            <Text fontSize='xl' color="black" fontWeight="bold">Total Price: ${Math.round(trip.total_price*100)/100}</Text>
+                            <Text fontSize='xl' color="black" fontWeight="bold">Total Distance: {Math.round(trip.trip_distance_miles)} miles</Text>
+                            <Text fontSize='xl' color="black" fontWeight="bold">Total Time: {Math.round(trip.trip_time_hours)} hours</Text>
                         </HStack>
                     </CardBody>
                 </Card>
-                {trip.days.map((element, index) => {
+                <Card key={-1} border='1px' borderColor='white' borderRadius={20} backgroundColor='white'>
+                    <CardBody>
+                        <HStack spacing='auto'>
+                            <Text fontSize='xl' color="black" fontWeight="bold">Hotel: {trip.hotel.name} (${trip.hotel.price})</Text>
+                            <Text fontSize='xl' color="black" fontWeight="bold">{trip.hotel.rating}<StarIcon boxSize={4} marginBottom="1"/> ({trip.hotel.num_ratings} ratings)</Text>
+                        </HStack>
+                    </CardBody>
+                </Card>
+                {trip.itinerary.map((element, index) => {
                     return (
                         <Card key={index} border='1px' borderColor='white' borderRadius={20} backgroundColor='white'>
                             <CardBody>
                                 <HStack spacing='auto'>
                                     <VStack align='stretch'>
                                         <Text fontSize='xl' fontWeight='bold' color='black'>Day {index+1}</Text>
-                                        <HStack>
-                                            <Icon as={MdAttractions} color="black"/>MdAttractions
-                                            <Text color="black">Attraction: {element.attraction}</Text>
+                                        <HStack spacing="auto">
+                                            <HStack>
+                                                <Icon as={MdAttractions} color="black"/>
+                                                <Text color="black">Attraction: {element.activity.name}</Text>
+                                            </HStack>
+                                            <Text color="black">{element.activity.rating}<StarIcon boxSize={3} marginBottom="1"/></Text>
                                         </HStack>
-                                        <HStack>
-                                            <Icon as={MdOutlineFastfood} color="black"/>
-                                            <Text color="black">Lunch: {element.food1}</Text>
+                                        <HStack spacing="auto">
+                                            <HStack>
+                                                <Icon as={MdOutlineFastfood} color="black"/>
+                                                <Text color="black">Lunch: {element.restaurant_1.name}</Text>
+                                            </HStack>
+                                            <Text color="black">{element.restaurant_1.rating}<StarIcon boxSize={3} marginBottom="1"/></Text>
                                         </HStack>
-                                        <HStack>
-                                            <Icon as={MdOutlineFastfood} color="black"/>
-                                            <Text color="black">Dinner: {element.food2}</Text>
+                                        <HStack spacing="auto">
+                                            <HStack>
+                                                <Icon as={MdOutlineFastfood} color="black"/>
+                                                <Text color="black">Dinner: {element.restaurant_2.name}</Text>
+                                            </HStack>
+                                            <Text color="black">{element.restaurant_2.rating}<StarIcon boxSize={3} marginBottom="1"/></Text>
                                         </HStack>
                                         <HStack spacing='30px'>
-                                            <Text color='black' fontWeight='bold'>Price: ${element.daily_budget}</Text>
-                                            <Text color='black' fontWeight='bold'>Distance: {element.miles_traveled} miles</Text>
-                                            <Text color='black' fontWeight='bold'>Travel time: {element.travel_time} hours</Text>
+                                            <Text color='black' fontWeight='bold'>Price: ${Math.round(element.daily_price*100)/100}</Text>
+                                            <Text color='black' fontWeight='bold'>Distance: {Math.round(element.daily_distance_miles)} miles</Text>
+                                            <Text color='black' fontWeight='bold'>Travel time: {Math.round(element.daily_duration_minutes)} minutes</Text>
                                         </HStack>
                                     </VStack>
                                     <Image
