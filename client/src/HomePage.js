@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {
     Heading,
     Input,
@@ -18,7 +18,6 @@ import {
     SliderTrack,
     SliderFilledTrack,
     SliderThumb,
-    SliderMark,
     Divider,
     Spinner,
     Card,
@@ -27,7 +26,7 @@ import {
  } from '@chakra-ui/react'
 
 import { Icon, StarIcon } from '@chakra-ui/icons'
-import { MdOutlineFastfood, MdAttractions } from 'react-icons/md'
+import { MdOutlineFastfood, MdAttractions, MdHome } from 'react-icons/md'
 import "./HomePage.css";
 
 function HomePage() {
@@ -88,8 +87,11 @@ function HomePage() {
     }
 
     return (
-    <VStack spacing='40px'>
-        <Heading>Home Page</Heading>
+    <VStack spacing='40px' paddingTop="30px">
+        <HStack>
+            <Icon w={10} h={10} as={MdHome}/>
+            <Heading>Home</Heading>
+        </HStack>
         <HStack spacing='20px'>
             <Input
                 value={location}
@@ -103,7 +105,7 @@ function HomePage() {
                 <NumberInputField
                     value={budget}
                     onChange={e => setBudget(e.target.value)}
-                    placeholder='Enter your buget ($)'
+                    placeholder='Enter your budget ($)'
                     backgroundColor="white"
                     color="black"
                     w={300}
@@ -177,7 +179,7 @@ function HomePage() {
         {trip != null && !isGenerating && (
             <VStack border='1px' borderColor='white' borderRadius={10} align='strech' w={900}  padding="20px" backgroundColor="gray.200">
                 <HStack spacing='auto'>
-                    <Heading fontSize='3xl' color="black">NEW budgeTRIP!</Heading>
+                    <Heading fontSize='3xl' color="black">New Trip!</Heading>
                     <Button
                         leftIcon={<StarIcon />}
                         color='white'

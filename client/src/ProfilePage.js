@@ -1,7 +1,9 @@
 import React from "react";
-import { VStack, Card, CardHeader, Heading, Table, Thead, Tr, Th, Tbody, Td } from '@chakra-ui/react'
+import { VStack, Card, Heading, Table, Tr, Tbody, Td, HStack } from '@chakra-ui/react'
 import "./ProfilePage.css";
 import ItineraryCard from "./ItineraryCard";
+import { Icon } from '@chakra-ui/icons'
+import { MdPerson } from 'react-icons/md'
 
 function ProfilePage() {
     const user = {
@@ -63,9 +65,11 @@ function ProfilePage() {
         },
     ];
     return (
-    <div id="profile">
-        <VStack spacing={10}>
-        <Heading>Profile Page</Heading>
+    <VStack spacing={10} paddingTop="30px">
+        <HStack>
+            <Icon w={10} h={10} as={MdPerson}/>
+            <Heading>Profile</Heading>
+        </HStack>
             <Card width='512px'>
               <Table>
                 <Tbody>
@@ -96,12 +100,11 @@ function ProfilePage() {
                 </Tbody>
               </Table>
             </Card>
-            <Heading>Your Trips</Heading>
+            <Heading fontSize="2xl">Your Trips</Heading>
             {userList.map((user,index) => (
         <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} includeLikes={false} num={index} total_distance={user.total_distance}/>
       ))}
     </VStack>
-    </div>
     );
 }
 

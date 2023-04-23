@@ -1,18 +1,19 @@
 import React, { useState} from "react";
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
-import { ChakraProvider, extendTheme, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@chakra-ui/react'
+import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { ChakraProvider, extendTheme, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, HStack, Text, Divider, Button, VStack } from '@chakra-ui/react'
 import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
 import LeaderboardPage from "./LeaderboardPage";
 import LoginPage from "./LoginPage";
 import './App.css';
 import UserContext from "./UserContext";
-
-
+import CustomNavBar from "./CustomNavBar";
 
 
 function App() {
   const [currentUsername, setCurrentUsername] = useState(null);
+
+  // const location = useLocation();
 
   const theme = extendTheme({
     colors: {
@@ -47,6 +48,7 @@ function App() {
       },
     },
   })
+
   
   return (
     <UserContext.Provider value={{currentUsername, setCurrentUsername}}>
@@ -72,42 +74,13 @@ function App() {
             </BreadcrumbItem>
           </Breadcrumb>
         )} */}
-        {!currentUsername && (
-          <div className="navBar">
-            <NavLink
-              to="/"
-              style={{ textDecoration: "none", marginRight: "0.5rem" }}
-              className="navButton"
-            >
-              <div>Home</div>
-            </NavLink>
-            <NavLink
-              to="/profile"
-              style={{ textDecoration: "none", marginRight: "0.5rem" }}
-              className="navButton"
-            >
-              <div>Profile</div>
-            </NavLink>
-            <NavLink
-              to="/leaderboard"
-              style={{ textDecoration: "none", marginRight: "0.5rem" }}
-              className="navButton"
-            >
-              <div>Leaderboard</div>
-            </NavLink>
-            <NavLink
-              to="/login"
-              style={{ textDecoration: "none", marginRight: "0.5rem" }}
-              className="navButton"
-            >
-              <div>Login</div>
-            </NavLink>
-          </div>
+        {currentUsername && (
+          <CustomNavBar />
         )}
           <Routes>
             <Route exact path="/" element={!currentUsername ? <HomePage/> : <LoginPage/>}/>
             <Route path="/profile" element={<ProfilePage/>} />
-            <Route path="/leaderboard" element={<LeaderboardPage/>} />
+            <Route path="/feed" element={<LeaderboardPage/>} />
             <Route path="/login" element={<LoginPage/>} />
           </Routes>
         </BrowserRouter>

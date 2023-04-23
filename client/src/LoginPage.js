@@ -94,8 +94,8 @@ function LoginPage() {
     }
 
     return (
-        <VStack spacing="20px" paddingTop="20px">
-            <Heading>Login Page</Heading>
+        <VStack spacing="20px" paddingTop="30px">
+            <Heading>Login</Heading>
             {currentUsername ? (
                 <>
                     <Text>You are already logged in</Text>

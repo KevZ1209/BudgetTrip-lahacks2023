@@ -4,8 +4,9 @@ import ItineraryCard from "./ItineraryCard";
 import { MdOutlineArrowUpward, MdOutlineArrowDownward } from 'react-icons/md';
 import "./LeaderboardPage.css";
 import { Card, CardHeader, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, Flex, Avatar, Box, IconButton, Link, UnorderedList, ListItem, ListIcon, Select } from '@chakra-ui/react';
-import { HStack, VStack } from "@chakra-ui/react";
 import { Icon, CheckIcon, CalendarIcon, HamburgerIcon } from '@chakra-ui/icons'
+import {VStack, HStack } from '@chakra-ui/react';
+import { MdOutlineFeed } from 'react-icons/md'
 
 function LeaderboardPage() {
     const [userList, setUserList] = useState([
@@ -78,8 +79,11 @@ function LeaderboardPage() {
     }
 
     return (
-    <div id="leaderboard">
-    <VStack spacing={10}>
+    <VStack spacing={10} paddingTop="30px">
+        <HStack>
+        <Icon w={10} h={10} as={MdOutlineFeed}/>
+        <Heading>Feed</Heading>
+      </HStack>
     <HStack>
     <Select placeholder='Sort by' backgroundColor="white" textColor="black" onClick={(e) => sortBy(e.target.value, ascending)}>
         <option value='num_likes'>Likes</option>
@@ -92,9 +96,6 @@ function LeaderboardPage() {
         <ItineraryCard name={user.username} location={user.location} budget={user.budget} total_price={user.total_price} likes={user.num_likes} days={user.days} hotel={user.hotel} hotel_price={user.hotel_price} includeLikes={true} num={index}  total_distance={user.total_distance}/>
       ))}
     </VStack>
-      
-        
-    </div>
     );
 }
 
