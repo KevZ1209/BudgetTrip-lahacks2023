@@ -187,6 +187,14 @@ app.get("/view-trips-for-user", async function(req, res) {
 
 })
 
+// view all trips for the feed
+app.get("/view-all-trips", async function(req, res) {
+    // find all trips
+    const trips = await Trip.find({})
+
+    res.send(trips)
+})
+
 app.get("/view-days-for-trip", async function(req, res) {
     // get tripID from req.body
     const { tripID } = req.body
